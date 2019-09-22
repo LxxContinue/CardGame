@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  HistoryViewController.h
 //  CardGame
 //
 //  Created by LXX on 2019/9/22.
@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+NS_ASSUME_NONNULL_BEGIN
 
+@interface HistoryViewController : UIViewController
 
 @end
 
+NS_ASSUME_NONNULL_END
