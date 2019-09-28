@@ -41,7 +41,6 @@
 - (IBAction)taskViewAction:(UIButton *)sender {
     TaskViewController *tc = [[TaskViewController alloc]init];
     [self presentViewController:tc animated:YES completion:nil];
-    
 }
 
 

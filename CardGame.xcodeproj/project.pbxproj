@@ -25,6 +25,11 @@
 		B513307623379CC6007A4A7E /* PersonalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B513307423379CC6007A4A7E /* PersonalViewController.xib */; };
 		B513307A23379CE8007A4A7E /* TaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B513307823379CE8007A4A7E /* TaskViewController.m */; };
 		B513307B23379CE8007A4A7E /* TaskViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B513307923379CE8007A4A7E /* TaskViewController.xib */; };
+		B5238CFC233E292B000B2E77 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5238CFA233E292B000B2E77 /* LoginViewController.m */; };
+		B5238CFD233E292B000B2E77 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5238CFB233E292B000B2E77 /* LoginViewController.xib */; };
+		B537DE15233FA1A60089C579 /* LxxInterfaceConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = B537DE14233FA1A60089C579 /* LxxInterfaceConnection.m */; };
+		B537DE1A233FA66F0089C579 /* RegistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B537DE18233FA66F0089C579 /* RegistViewController.m */; };
+		B537DE1B233FA66F0089C579 /* RegistViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B537DE19233FA66F0089C579 /* RegistViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +81,14 @@
 		B513307723379CE8007A4A7E /* TaskViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaskViewController.h; sourceTree = "<group>"; };
 		B513307823379CE8007A4A7E /* TaskViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskViewController.m; sourceTree = "<group>"; };
 		B513307923379CE8007A4A7E /* TaskViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskViewController.xib; sourceTree = "<group>"; };
+		B5238CF9233E292B000B2E77 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		B5238CFA233E292B000B2E77 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		B5238CFB233E292B000B2E77 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		B537DE13233FA1A60089C579 /* LxxInterfaceConnection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LxxInterfaceConnection.h; sourceTree = "<group>"; };
+		B537DE14233FA1A60089C579 /* LxxInterfaceConnection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LxxInterfaceConnection.m; sourceTree = "<group>"; };
+		B537DE17233FA66F0089C579 /* RegistViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegistViewController.h; sourceTree = "<group>"; };
+		B537DE18233FA66F0089C579 /* RegistViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegistViewController.m; sourceTree = "<group>"; };
+		B537DE19233FA66F0089C579 /* RegistViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegistViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,26 +139,17 @@
 		B513302B23378D1C007A4A7E /* CardGame */ = {
 			isa = PBXGroup;
 			children = (
+				B5238CF9233E292B000B2E77 /* LoginViewController.h */,
+				B5238CFA233E292B000B2E77 /* LoginViewController.m */,
+				B5238CFB233E292B000B2E77 /* LoginViewController.xib */,
+				B537DE17233FA66F0089C579 /* RegistViewController.h */,
+				B537DE18233FA66F0089C579 /* RegistViewController.m */,
+				B537DE19233FA66F0089C579 /* RegistViewController.xib */,
+				B537DE13233FA1A60089C579 /* LxxInterfaceConnection.h */,
+				B537DE14233FA1A60089C579 /* LxxInterfaceConnection.m */,
+				B537DE16233FA1B50089C579 /* GameView */,
 				B513302C23378D1C007A4A7E /* AppDelegate.h */,
 				B513302D23378D1C007A4A7E /* AppDelegate.m */,
-				B513305E2337919E007A4A7E /* RootViewController.h */,
-				B513305F2337919E007A4A7E /* RootViewController.m */,
-				B51330602337919E007A4A7E /* RootViewController.xib */,
-				B513306323379620007A4A7E /* GameViewController.h */,
-				B513306423379620007A4A7E /* GameViewController.m */,
-				B513306523379620007A4A7E /* GameViewController.xib */,
-				B513306823379634007A4A7E /* HistoryViewController.h */,
-				B513306923379634007A4A7E /* HistoryViewController.m */,
-				B513306A23379634007A4A7E /* HistoryViewController.xib */,
-				B513306D2337965A007A4A7E /* RankListViewController.h */,
-				B513306E2337965A007A4A7E /* RankListViewController.m */,
-				B513306F2337965A007A4A7E /* RankListViewController.xib */,
-				B513307223379CC6007A4A7E /* PersonalViewController.h */,
-				B513307323379CC6007A4A7E /* PersonalViewController.m */,
-				B513307423379CC6007A4A7E /* PersonalViewController.xib */,
-				B513307723379CE8007A4A7E /* TaskViewController.h */,
-				B513307823379CE8007A4A7E /* TaskViewController.m */,
-				B513307923379CE8007A4A7E /* TaskViewController.xib */,
 				B513303523378D1D007A4A7E /* Assets.xcassets */,
 				B513303723378D1D007A4A7E /* LaunchScreen.storyboard */,
 				B513303A23378D1D007A4A7E /* Info.plist */,
@@ -170,6 +174,31 @@
 				B513305223378D1D007A4A7E /* Info.plist */,
 			);
 			path = CardGameUITests;
+			sourceTree = "<group>";
+		};
+		B537DE16233FA1B50089C579 /* GameView */ = {
+			isa = PBXGroup;
+			children = (
+				B513305E2337919E007A4A7E /* RootViewController.h */,
+				B513305F2337919E007A4A7E /* RootViewController.m */,
+				B51330602337919E007A4A7E /* RootViewController.xib */,
+				B513306323379620007A4A7E /* GameViewController.h */,
+				B513306423379620007A4A7E /* GameViewController.m */,
+				B513306523379620007A4A7E /* GameViewController.xib */,
+				B513306823379634007A4A7E /* HistoryViewController.h */,
+				B513306923379634007A4A7E /* HistoryViewController.m */,
+				B513306A23379634007A4A7E /* HistoryViewController.xib */,
+				B513306D2337965A007A4A7E /* RankListViewController.h */,
+				B513306E2337965A007A4A7E /* RankListViewController.m */,
+				B513306F2337965A007A4A7E /* RankListViewController.xib */,
+				B513307223379CC6007A4A7E /* PersonalViewController.h */,
+				B513307323379CC6007A4A7E /* PersonalViewController.m */,
+				B513307423379CC6007A4A7E /* PersonalViewController.xib */,
+				B513307723379CE8007A4A7E /* TaskViewController.h */,
+				B513307823379CE8007A4A7E /* TaskViewController.m */,
+				B513307923379CE8007A4A7E /* TaskViewController.xib */,
+			);
+			path = GameView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -277,12 +306,14 @@
 			files = (
 				B51330712337965A007A4A7E /* RankListViewController.xib in Resources */,
 				B513307B23379CE8007A4A7E /* TaskViewController.xib in Resources */,
+				B537DE1B233FA66F0089C579 /* RegistViewController.xib in Resources */,
 				B513306723379620007A4A7E /* GameViewController.xib in Resources */,
 				B513303923378D1D007A4A7E /* LaunchScreen.storyboard in Resources */,
 				B513303623378D1D007A4A7E /* Assets.xcassets in Resources */,
 				B513306C23379634007A4A7E /* HistoryViewController.xib in Resources */,
 				B51330622337919E007A4A7E /* RootViewController.xib in Resources */,
 				B513307623379CC6007A4A7E /* PersonalViewController.xib in Resources */,
+				B5238CFD233E292B000B2E77 /* LoginViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -311,7 +342,10 @@
 				B513307A23379CE8007A4A7E /* TaskViewController.m in Sources */,
 				B513307523379CC6007A4A7E /* PersonalViewController.m in Sources */,
 				B513303C23378D1D007A4A7E /* main.m in Sources */,
+				B537DE15233FA1A60089C579 /* LxxInterfaceConnection.m in Sources */,
 				B51330612337919E007A4A7E /* RootViewController.m in Sources */,
+				B537DE1A233FA66F0089C579 /* RegistViewController.m in Sources */,
+				B5238CFC233E292B000B2E77 /* LoginViewController.m in Sources */,
 				B513306B23379634007A4A7E /* HistoryViewController.m in Sources */,
 				B51330702337965A007A4A7E /* RankListViewController.m in Sources */,
 				B513302E23378D1C007A4A7E /* AppDelegate.m in Sources */,

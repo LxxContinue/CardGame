@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "RootViewController.h"
+#import "LoginViewController.h"
 @interface AppDelegate ()
 
 @end
@@ -18,7 +19,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window=[[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     
-    RootViewController * VC=[[RootViewController alloc]init];
+//    RootViewController * VC=[[RootViewController alloc]init];
+    LoginViewController * VC=[[LoginViewController alloc]init];
     
 //    UINavigationController * NC=[[UINavigationController alloc]initWithRootViewController:VC];
 //    NC.tabBarItem.title=@"空";
