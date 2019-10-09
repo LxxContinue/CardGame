@@ -110,6 +110,7 @@ static const CGFloat kTimeOutTime = 10.f;
             
             NSLog(@"**** token:%@   id:%@",userInfo.token,userInfo.user_id);
             
+            
             dispatch_async(dispatch_get_main_queue(), ^{
                 RootViewController *rvc = [[RootViewController alloc ] init];
                 // 获取主代理

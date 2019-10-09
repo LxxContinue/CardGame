@@ -61,7 +61,6 @@ static const CGFloat kTimeOutTime = 10.f;
     
     // 1.创建请求
     NSURL *url = [NSURL URLWithString:@"https://api.shisanshui.rtxux.xyz/auth/register"];
-//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     
     NSMutableURLRequest *request=[NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:kTimeOutTime];
     request.HTTPMethod = @"POST";
@@ -76,7 +75,6 @@ static const CGFloat kTimeOutTime = 10.f;
     request.HTTPBody = data;
     
     // 4.发送请求
-//    NSURLSession *session = [NSURLSession sharedSession];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[[NSOperationQueue alloc]init]];
     
     //__block  NSString *result = @"";

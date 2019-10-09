@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *cardLabel;
 
 @property (nonatomic) NSString * cardStr ;
+@property (nonatomic) NSString * gameID ;
 @end
 
 NS_ASSUME_NONNULL_END

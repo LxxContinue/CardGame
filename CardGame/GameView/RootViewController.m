@@ -38,7 +38,6 @@ static const CGFloat kTimeOutTime = 10.f;
 
     // 1.创建请求
     NSURL *url = [NSURL URLWithString:@"https://api.shisanshui.rtxux.xyz/game/open"];
-    //    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     
     NSMutableURLRequest *request=[NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:kTimeOutTime];
     request.HTTPMethod = @"POST";
@@ -47,7 +46,6 @@ static const CGFloat kTimeOutTime = 10.f;
     // 3.设置请求体
     
     // 4.发送请求
-    //    NSURLSession *session = [NSURLSession sharedSession];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[[NSOperationQueue alloc]init]];
     
     //__block  NSString *result = @"";
@@ -61,6 +59,8 @@ static const CGFloat kTimeOutTime = 10.f;
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 gc.cardStr = [cardDic objectForKey:@"card"];
+                gc.gameID = [cardDic objectForKey:@"id"];
+                
                 [self presentViewController:gc animated:YES completion:nil];
             });
             

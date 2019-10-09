@@ -15,6 +15,7 @@
 @interface GameViewController ()
 
 @property (nonatomic) NSString * token ;
+@property (nonatomic) NSMutableArray *cardArr;
 
 @end
 
@@ -26,6 +27,17 @@ static const CGFloat kTimeOutTime = 10.f;
     [super viewDidLoad];
 
     self.cardLabel.text = self.cardStr;
+    
+    NSLog(@"id:%@  card:%@",self.gameID,self.cardStr);
+    
+    [self creatCard];
+}
+
+-(void)creatCard{
+    self.cardArr = [[NSMutableArray alloc]init];
+    [self.cardArr addObject:[NSString stringWithFormat:@"*2 *3 *4"]];
+    [self.cardArr addObject:[NSString stringWithFormat:@"*5 *6 *7 *8 *9"]];
+    [self.cardArr addObject:[NSString stringWithFormat:@"*10 *J *Q *K *A"]];
 }
 
 - (IBAction)popAction:(UIButton *)sender {
@@ -35,6 +47,48 @@ static const CGFloat kTimeOutTime = 10.f;
 - (IBAction)commitAction:(UIButton *)sender {
 //    ScoreViewController *svc = [[ScoreViewController alloc]init];
 //    [self presentViewController:svc animated:YES completion:nil];
+    
+    // 1.创建请求
+    NSURL *url = [NSURL URLWithString:@"https://api.shisanshui.rtxux.xyz/game/submit"];
+    
+    NSMutableURLRequest *request=[NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:kTimeOutTime];
+    request.HTTPMethod = @"POST";
+    // 2.设置请求头
+    [request setValue:self.token forHTTPHeaderField:@"X-Auth-Token"];
+    // 3.设置请求体
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    [dic setObject:self.cardArr forKey:@"card"];
+    [dic setObject:self.gameID forKey:@"id"];
+    
+    NSData *data = [NSJSONSerialization dataWithJSONObject:dic options:0 error:nil];
+    request.HTTPBody = data;
+    
+    // 4.发送请求
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[[NSOperationQueue alloc]init]];
+    
+    //__block  NSString *result = @"";
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        if (!error) {
+            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+            
+            NSDictionary *dataDic = [[NSDictionary alloc]initWithDictionary:[dict objectForKey:@"data"]];
+            NSLog(@"msg: %@",[dataDic objectForKey:@"msg"]);
+            
+            NSArray *arr = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
+            NSLog(@"返回正确：%@",arr);
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                [self dismissViewControllerAnimated:YES completion:nil];
+            });
+            
+        }else{
+            NSLog(@"错误信息：%@",error);
+        }
+    }];
+    [dataTask resume];
+    
 
 }
 
