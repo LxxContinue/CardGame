@@ -12,19 +12,63 @@
 #import "RankListViewController.h"
 #import "PersonalViewController.h"
 #import "TaskViewController.h"
+#import "UserInfo.h"
 
 @interface RootViewController ()
 
+@property (nonatomic) NSString * token ;
+@property (nonatomic) UserInfo *userInfo;
+
 @end
+static const CGFloat kTimeOutTime = 10.f;
 
 @implementation RootViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    NSData *deData = [[NSUserDefaults standardUserDefaults] objectForKey:@"userInfo"];
+    _userInfo = [NSKeyedUnarchiver unarchiveObjectWithData:deData];
+    self.token = _userInfo.token;
+    
+    
 }
 - (IBAction)beginGameAction:(UIButton *)sender {
     GameViewController *gc = [[GameViewController alloc]init];
-    [self presentViewController:gc animated:YES completion:nil];
+
+    // 1.创建请求
+    NSURL *url = [NSURL URLWithString:@"https://api.shisanshui.rtxux.xyz/game/open"];
+    //    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    
+    NSMutableURLRequest *request=[NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:kTimeOutTime];
+    request.HTTPMethod = @"POST";
+    // 2.设置请求头
+    [request setValue:self.token forHTTPHeaderField:@"X-Auth-Token"];
+    // 3.设置请求体
+    
+    // 4.发送请求
+    //    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[[NSOperationQueue alloc]init]];
+    
+    //__block  NSString *result = @"";
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        if (!error) {
+            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+            
+            NSDictionary *cardDic = [[NSDictionary alloc]initWithDictionary:[dict objectForKey:@"data"]];
+            NSLog(@"id:%@  card:%@",[cardDic objectForKey:@"id"],[cardDic objectForKey:@"card"]);
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                gc.cardStr = [cardDic objectForKey:@"card"];
+                [self presentViewController:gc animated:YES completion:nil];
+            });
+            
+        }else{
+            NSLog(@"错误信息：%@",error);
+        }
+    }];
+    [dataTask resume];
 }
 - (IBAction)taskViewAction:(UIButton *)sender {
     TaskViewController *tc = [[TaskViewController alloc]init];
@@ -40,6 +84,54 @@
 }
 - (IBAction)historyAction:(UIButton *)sender {
     HistoryViewController *hc = [[HistoryViewController alloc]init];
+    
+    // 1.创建请求
+    NSURL *url = [NSURL URLWithString:@"https://api.shisanshui.rtxux.xyz/history"];
+    //    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    
+    NSMutableURLRequest *request=[NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:kTimeOutTime];
+    request.HTTPMethod = @"GET";
+    // 2.设置请求头
+    [request setValue:self.token forHTTPHeaderField:@"X-Auth-Token"];
+    
+    // 3.设置请求体
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    [dic setObject:self.userInfo.user_id forKey:@"player_id"];
+    [dic setObject:@"10" forKey:@"limit"];
+    [dic setObject:@"1" forKey:@"page"];
+    
+    NSData *data = [NSJSONSerialization dataWithJSONObject:dic options:0 error:nil];
+    request.HTTPBody = data;
+    
+    
+    // 4.发送请求
+    //    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[[NSOperationQueue alloc]init]];
+    
+    //__block  NSString *result = @"";
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        if (!error) {
+            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+            
+            NSDictionary *cardDic = [[NSDictionary alloc]initWithDictionary:[dict objectForKey:@"data"]];
+            NSLog(@"id:%@  card:%@",[cardDic objectForKey:@"id"],[cardDic objectForKey:@"score"]);
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+//                hc.cardStr = [cardDic objectForKey:@"card"];
+//                [self presentViewController:hc animated:YES completion:nil];
+                
+                
+
+            });
+            
+        }else{
+            NSLog(@"错误信息：%@",error);
+        }
+    }];
+    [dataTask resume];
+    
+    
     [self presentViewController:hc animated:YES completion:nil];
 }
 

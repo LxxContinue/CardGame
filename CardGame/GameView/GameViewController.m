@@ -25,6 +25,7 @@ static const CGFloat kTimeOutTime = 10.f;
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    self.cardLabel.text = self.cardStr;
 }
 
 - (IBAction)popAction:(UIButton *)sender {
@@ -34,47 +35,7 @@ static const CGFloat kTimeOutTime = 10.f;
 - (IBAction)commitAction:(UIButton *)sender {
 //    ScoreViewController *svc = [[ScoreViewController alloc]init];
 //    [self presentViewController:svc animated:YES completion:nil];
-    
-    NSData *deData = [[NSUserDefaults standardUserDefaults] objectForKey:@"userInfo"];
-    UserInfo * userInfo = [NSKeyedUnarchiver unarchiveObjectWithData:deData];
-    self.token = userInfo.token;
-    
-    // 1.创建请求
-    NSURL *url = [NSURL URLWithString:@"https://api.shisanshui.rtxux.xyz/game/open"];
-    //    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    
-    NSMutableURLRequest *request=[NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:kTimeOutTime];
-    request.HTTPMethod = @"POST";
-    // 2.设置请求头
-    [request setValue:self.token forHTTPHeaderField:@"X-Auth-Token"];
-    // 3.设置请求体
-    
-    // 4.发送请求
-    //    NSURLSession *session = [NSURLSession sharedSession];
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[[NSOperationQueue alloc]init]];
-    
-    //__block  NSString *result = @"";
-    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        
-        if (!error) {
-            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-            UserInfo *userInfo = [[UserInfo alloc] initWithNSDictionary:[dict objectForKey:@"data"] ];
-            NSData *data = [NSKeyedArchiver archivedDataWithRootObject:userInfo];
-            [[NSUserDefaults standardUserDefaults] setObject:data forKey:@"userInfo"];
-            [[NSUserDefaults standardUserDefaults] setObject:userInfo.token forKey:@"token"];
-            
-            
-            NSDictionary *cardDic = [[NSDictionary alloc]initWithDictionary:[dict objectForKey:@"data"]];
-            NSLog(@"id:%@  card:%@",[cardDic objectForKey:@"id"],[cardDic objectForKey:@"card"]);
-            
-        }else{
-            NSLog(@"错误信息：%@",error);
-        }
-    }];
-    [dataTask resume];
 
-
-   
 }
 
 -(void)yjn{

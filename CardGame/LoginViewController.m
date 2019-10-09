@@ -92,17 +92,23 @@ static const CGFloat kTimeOutTime = 10.f;
     //    NSURLSession *session = [NSURLSession sharedSession];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[[NSOperationQueue alloc]init]];
     
-    //__block  NSString *result = @"";
+    __block  NSString *result = @"";
     NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         
         if (!error) {
             NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
             UserInfo *userInfo = [[UserInfo alloc] initWithNSDictionary:[dict objectForKey:@"data"] ];
-            NSData *data = [NSKeyedArchiver archivedDataWithRootObject:userInfo];
-            [[NSUserDefaults standardUserDefaults] setObject:data forKey:@"userInfo"];
+            NSData *userData = [NSKeyedArchiver archivedDataWithRootObject:userInfo];
+            [[NSUserDefaults standardUserDefaults] setObject:userData forKey:@"userInfo"];
             [[NSUserDefaults standardUserDefaults] setObject:userInfo.token forKey:@"token"];
+            [[NSUserDefaults standardUserDefaults] setObject:userInfo.user_id forKey:@"user_id"];
             
-            NSLog(@"**** token:%@",userInfo.token);
+            result = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            NSLog(@"返回正确：%@",result);
+            NSArray *arr = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
+            NSLog(@"返回正确：%@",arr);
+            
+            NSLog(@"**** token:%@   id:%@",userInfo.token,userInfo.user_id);
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 RootViewController *rvc = [[RootViewController alloc ] init];

@@ -48,7 +48,7 @@
 -(void)encodeWithCoder:(NSCoder *)aCoder
 {
     [aCoder encodeObject:self.token forKey:@"token"];
-    [aCoder encodeObject:self.player_id forKey:@"player_id"];
+    [aCoder encodeObject:self.user_id forKey:@"user_id"];
     [aCoder encodeObject:self.name forKey:@"name"];
     [aCoder encodeObject:self.score forKey:@"score"];
     
@@ -62,7 +62,7 @@
             return self;
         }
         self.token = [aDecoder decodeObjectForKey:@"token"];
-        self.player_id = [aDecoder decodeObjectForKey:@"player_id"];
+        self.user_id = [aDecoder decodeObjectForKey:@"user_id"];
         self.name = [aDecoder decodeObjectForKey:@"name"];
         self.score = [aDecoder decodeObjectForKey:@"score"];
         
