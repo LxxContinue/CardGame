@@ -10,10 +10,15 @@
 #import "ScoreViewController.h"
 
 #import "LxxInterfaceConnection.h"
+#import "UserInfo.h"
 
 @interface GameViewController ()
 
+@property (nonatomic) NSString * token ;
+
 @end
+
+static const CGFloat kTimeOutTime = 10.f;
 
 @implementation GameViewController
 
@@ -30,7 +35,49 @@
 //    ScoreViewController *svc = [[ScoreViewController alloc]init];
 //    [self presentViewController:svc animated:YES completion:nil];
     
+    NSData *deData = [[NSUserDefaults standardUserDefaults] objectForKey:@"userInfo"];
+    UserInfo * userInfo = [NSKeyedUnarchiver unarchiveObjectWithData:deData];
+    self.token = userInfo.token;
+    
+    // 1.创建请求
+    NSURL *url = [NSURL URLWithString:@"https://api.shisanshui.rtxux.xyz/game/open"];
+    //    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    
+    NSMutableURLRequest *request=[NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:kTimeOutTime];
+    request.HTTPMethod = @"POST";
+    // 2.设置请求头
+    [request setValue:self.token forHTTPHeaderField:@"X-Auth-Token"];
+    // 3.设置请求体
+    
+    // 4.发送请求
+    //    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[[NSOperationQueue alloc]init]];
+    
+    //__block  NSString *result = @"";
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        if (!error) {
+            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+            UserInfo *userInfo = [[UserInfo alloc] initWithNSDictionary:[dict objectForKey:@"data"] ];
+            NSData *data = [NSKeyedArchiver archivedDataWithRootObject:userInfo];
+            [[NSUserDefaults standardUserDefaults] setObject:data forKey:@"userInfo"];
+            [[NSUserDefaults standardUserDefaults] setObject:userInfo.token forKey:@"token"];
+            
+            
+            NSDictionary *cardDic = [[NSDictionary alloc]initWithDictionary:[dict objectForKey:@"data"]];
+            NSLog(@"id:%@  card:%@",[cardDic objectForKey:@"id"],[cardDic objectForKey:@"card"]);
+            
+        }else{
+            NSLog(@"错误信息：%@",error);
+        }
+    }];
+    [dataTask resume];
 
+
+   
+}
+
+-(void)yjn{
     NSMutableArray * arr = [[NSMutableArray alloc]init];
     for (int i=1; i<=4; i++){
         NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
@@ -66,8 +113,8 @@
     [dic setObject:[NSString stringWithFormat:@"2"]  forKey:@"type"];
     [dic setObject:[NSString stringWithFormat:@"4"] forKey:@"rank"];
     [arr addObject:dic];
-
-
+    
+    
     // 1.创建请求
     NSURL *url = [NSURL URLWithString:@"http://122.51.19.148:8080/Card13SpringBoot-1.0-SNAPSHOT/hello"];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
