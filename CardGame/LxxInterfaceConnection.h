@@ -10,7 +10,7 @@
 #import <UIKit/UIKit.h>
 
 #define NetURL1  @"http://xyt.fzu.edu.cn:54321/v1/%@"
-#define NetURL @"http://xyt.fzu.edu.cn/v1/%@"
+#define NetURL @"http://shisanshui.rtxux.xyz/%@"
 
 NS_ASSUME_NONNULL_BEGIN
 

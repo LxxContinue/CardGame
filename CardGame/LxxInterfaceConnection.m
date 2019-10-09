@@ -350,6 +350,7 @@ const CGFloat kTimeOutTime = 10.f;
         if(![request valueForHTTPHeaderField:@"Authorization"]) {
             [request setValue:self.token forHTTPHeaderField:@"Authorization"];
         }
+/*添加的字段*/ [request setValue:self.token forHTTPHeaderField:@"X-Auth-Token"];
         NSLog(@"self.token:%@",self.token);
     }
     if(params) {
@@ -415,6 +416,7 @@ const CGFloat kTimeOutTime = 10.f;
                 dataMessage=@"连接服务器超时，请稍后重试！";
             } else {
                 dataMessage=@"当前网络不可用，请检查您的网络设置!";
+                NSLog(@"lxx error %@",error);
             }
             if(block) {
                 block(getFail,dataMessage,nil);
@@ -552,7 +554,10 @@ const CGFloat kTimeOutTime = 10.f;
 -(void)connetNetWithPutMethod:(NSString *)handle parms:(NSDictionary *)params type:(NSInteger)type block:(void (^)(int, NSString *, NSDictionary *))block  {
     __block BOOL getFail=0;
     __block NSString *dataMessage;
-    NSString *urlStr = [NSString stringWithFormat:NetURL,handle];
+    
+//**    NSString *urlStr = [NSString stringWithFormat:NetURL,handle];
+    NSString *urlStr = [NSString stringWithFormat:@"%@", handle];
+    
     //设置请求头参数
     NSString *content = @"";
     //    if(keys.count>0) {
@@ -595,7 +600,9 @@ const CGFloat kTimeOutTime = 10.f;
             [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
         }
         if(type == 0) {
-            [request setValue:self.token forHTTPHeaderField:@"Authorization"];
+            
+//**            [request setValue:self.token forHTTPHeaderField:@"Authorization"];
+            
         }
         request.HTTPBody = data;
     }

@@ -30,6 +30,13 @@
     self.window.rootViewController = VC;
     
     self.window.backgroundColor=[UIColor whiteColor];
+    
+    //设置网络缓存大小
+    int cacheSizeMemory = 1 * 1024 * 1024; //4MB
+    int cacheSizeDisk = 5 * 1024 * 1024;  //32MB
+    NSURLCache *sharedCache = [[NSURLCache alloc] initWithMemoryCapacity:cacheSizeMemory diskCapacity:cacheSizeDisk diskPath:@"NSURLCache"];
+    [NSURLCache setSharedURLCache:sharedCache];
+    
     [self.window makeKeyAndVisible];
     return YES;
 }

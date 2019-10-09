@@ -12,10 +12,13 @@
 #import "AppDelegate.h"
 
 #import "LxxInterfaceConnection.h"
+#import "UserInfo.h"
 
 @interface LoginViewController ()<UITextFieldDelegate>
 
 @end
+
+static const CGFloat kTimeOutTime = 10.f;
 
 @implementation LoginViewController
 
@@ -30,6 +33,7 @@
 }
 
 - (IBAction)loginBtnAction:(UIButton *)sender {
+
     NSString*pattern =@"^[0-9]{9}";
     NSPredicate*pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",pattern];
     if(![pred evaluateWithObject:_usernameText.text]) {
@@ -41,32 +45,79 @@
         [self showError:@"请输入密码"];
         return;
     }
+
+    [self login];
     
-    //[self login];
-    
-    RootViewController *rvc = [[RootViewController alloc ] init];
-    // 获取主代理
-    AppDelegate *delegete = (AppDelegate *)[[UIApplication  sharedApplication] delegate];
-    delegete.window.rootViewController = rvc;
+//    RootViewController *rvc = [[RootViewController alloc ] init];
+//    // 获取主代理
+//    AppDelegate *delegete = (AppDelegate *)[[UIApplication  sharedApplication] delegate];
+//    delegete.window.rootViewController = rvc;
 }
 
 -(void)login{
-    LxxInterfaceConnection *connect = [[LxxInterfaceConnection alloc] init];
+//    LxxInterfaceConnection *connect = [[LxxInterfaceConnection alloc] init];
+//    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+//    [dic setObject:_usernameText.text forKey:@"username"];
+//    [dic setObject:_passwordText.text forKey:@"password"];
+//    [connect connetNetWithHaddleV2:@"auth/login" parms:dic type:1 needToken:NO block:^(int fail,NSString *dataMessage,NSDictionary *dictionary){
+//
+//        if(fail == 0) {
+//            RootViewController *rvc = [[RootViewController alloc ] init];
+//            // 获取主代理
+//            AppDelegate *delegete = (AppDelegate *)[[UIApplication  sharedApplication] delegate];
+//            delegete.window.rootViewController = rvc;
+//
+//        } else {
+//            NSLog(@"login error");
+//        }
+//    }];
+    
+    // 1.创建请求
+    NSURL *url = [NSURL URLWithString:@"https://api.shisanshui.rtxux.xyz/auth/login"];
+    //    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    
+    NSMutableURLRequest *request=[NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:kTimeOutTime];
+    request.HTTPMethod = @"POST";
+    // 2.设置请求头
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    // 3.设置请求体
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     [dic setObject:_usernameText.text forKey:@"username"];
     [dic setObject:_passwordText.text forKey:@"password"];
-    [connect connetNetWithHaddleV2:@"auth/login" parms:dic type:1 needToken:NO block:^(int fail,NSString *dataMessage,NSDictionary *dictionary){
-
-        if(fail == 0) {
-            RootViewController *rvc = [[RootViewController alloc ] init];
-            // 获取主代理
-            AppDelegate *delegete = (AppDelegate *)[[UIApplication  sharedApplication] delegate];
-            delegete.window.rootViewController = rvc;
+    
+    NSData *data = [NSJSONSerialization dataWithJSONObject:dic options:0 error:nil];
+    request.HTTPBody = data;
+    
+    // 4.发送请求
+    //    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[[NSOperationQueue alloc]init]];
+    
+    //__block  NSString *result = @"";
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        if (!error) {
+            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+            UserInfo *userInfo = [[UserInfo alloc] initWithNSDictionary:[dict objectForKey:@"data"] ];
+            NSData *data = [NSKeyedArchiver archivedDataWithRootObject:userInfo];
+            [[NSUserDefaults standardUserDefaults] setObject:data forKey:@"userInfo"];
+            [[NSUserDefaults standardUserDefaults] setObject:userInfo.token forKey:@"token"];
             
-        } else {
-            NSLog(@"login error");
+            NSLog(@"**** token:%@",userInfo.token);
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                RootViewController *rvc = [[RootViewController alloc ] init];
+                // 获取主代理
+                AppDelegate *delegete = (AppDelegate *)[[UIApplication  sharedApplication] delegate];
+                delegete.window.rootViewController = rvc;
+            });
+            
+        }else{
+            NSLog(@"错误信息：%@",error);
         }
     }];
+    [dataTask resume];
+
+    
 }
 - (IBAction)showRegistView:(UIButton *)sender {
     RegistViewController *rvc = [[RegistViewController alloc]init];

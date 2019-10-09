@@ -23,9 +23,8 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="back1" translatesAutoresizingMaskIntoConstraints="NO" id="2tc-mm-TTa">
                     <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VT2-zn-Isn">
-                    <rect key="frame" x="33" y="20" width="41" height="36"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VT2-zn-Isn">
+                    <rect key="frame" x="10" y="10" width="41" height="36"/>
                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                     <state key="normal" title="返回"/>
                     <connections>
@@ -37,8 +36,10 @@
             <constraints>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="2tc-mm-TTa" secondAttribute="bottom" id="49e-1i-G4i"/>
                 <constraint firstItem="2tc-mm-TTa" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="DnT-q1-pCP"/>
+                <constraint firstItem="VT2-zn-Isn" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="10" id="M1b-LW-4H1"/>
                 <constraint firstItem="2tc-mm-TTa" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" id="egK-mm-3Jg"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="2tc-mm-TTa" secondAttribute="trailing" id="jsn-mE-r6L"/>
+                <constraint firstItem="VT2-zn-Isn" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="10" id="xap-rU-TJN"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
         </view>
