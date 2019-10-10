@@ -92,7 +92,7 @@ static const CGFloat kTimeOutTime = 20.f;
     // 1.创建请求
     //NSURL *url = [NSURL URLWithString:@"https://api.shisanshui.rtxux.xyz/history"];
 
-    NSString *urlStr = [NSString stringWithFormat: @"https://api.shisanshui.rtxux.xyz/history?player_id=%@&page=%@&limit=%@",self.userInfo.user_id,@"7",@"1"];
+    NSString *urlStr = [NSString stringWithFormat: @"https://api.shisanshui.rtxux.xyz/history?player_id=%@&page=%@&limit=%@",self.userInfo.user_id,@"0",@"10"];
     
     NSURL *url = [NSURL URLWithString:urlStr];
     NSMutableURLRequest *request=[NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:kTimeOutTime];

@@ -18,6 +18,10 @@
 @property (nonatomic) UserInfo *userInfo;
 @property (nonatomic) NSString * token ;
 @property (nonatomic) NSMutableArray *cardArr;
+@property (weak, nonatomic) IBOutlet UILabel *qianLabel;
+@property (weak, nonatomic) IBOutlet UILabel *zhongLabel;
+@property (weak, nonatomic) IBOutlet UILabel *houLabel;
+
 
 @end
 
@@ -25,7 +29,7 @@ static const CGFloat kTimeOutTime = 20.f;
 
 @implementation GameViewController
 
-- (void)viewDidLoad {
+-(void)viewDidLoad {
     [super viewDidLoad];
     
     NSData *deData = [[NSUserDefaults standardUserDefaults] objectForKey:@"userInfo"];
@@ -33,6 +37,7 @@ static const CGFloat kTimeOutTime = 20.f;
     self.token = _userInfo.token;
 
     self.cardLabel.text = self.cardStr;
+    
     
     NSLog(@"id:%@  card:%@",self.gameID,self.cardStr);
     
@@ -71,6 +76,10 @@ static const CGFloat kTimeOutTime = 20.f;
     [self.cardArr addObject:qiandun];
     [self.cardArr addObject:zhongdun];
     [self.cardArr addObject:houdun];
+    
+    self.qianLabel.text = qiandun;
+    self.zhongLabel.text = zhongdun;
+    self.houLabel.text = houdun;
 }
 
 - (IBAction)popAction:(UIButton *)sender {
@@ -100,7 +109,6 @@ static const CGFloat kTimeOutTime = 20.f;
     // 4.发送请求
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[[NSOperationQueue alloc]init]];
     
-    //__block  NSString *result = @"";
     NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         
         if (!error) {
