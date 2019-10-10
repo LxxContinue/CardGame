@@ -31,6 +31,7 @@
 		B537DE1A233FA66F0089C579 /* RegistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B537DE18233FA66F0089C579 /* RegistViewController.m */; };
 		B537DE1B233FA66F0089C579 /* RegistViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B537DE19233FA66F0089C579 /* RegistViewController.xib */; };
 		B5A7D2B2234DE2AF007F9BAF /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A7D2B1234DE2AF007F9BAF /* UserInfo.m */; };
+		B5A7D2F6234E36B0007F9BAF /* wshFile.c in Sources */ = {isa = PBXBuildFile; fileRef = B5A7D2F4234E36B0007F9BAF /* wshFile.c */; };
 		B5F407C32340998500D43C80 /* ScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F407C12340998500D43C80 /* ScoreViewController.m */; };
 		B5F407C42340998500D43C80 /* ScoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5F407C22340998500D43C80 /* ScoreViewController.xib */; };
 		B5F407C82340A2D100D43C80 /* RankTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F407C62340A2D100D43C80 /* RankTableViewCell.m */; };
@@ -96,6 +97,8 @@
 		B537DE19233FA66F0089C579 /* RegistViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegistViewController.xib; sourceTree = "<group>"; };
 		B5A7D2B0234DE2AF007F9BAF /* UserInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserInfo.h; sourceTree = "<group>"; };
 		B5A7D2B1234DE2AF007F9BAF /* UserInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserInfo.m; sourceTree = "<group>"; };
+		B5A7D2F4234E36B0007F9BAF /* wshFile.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = wshFile.c; sourceTree = "<group>"; };
+		B5A7D2F5234E36B0007F9BAF /* wshFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wshFile.h; sourceTree = "<group>"; };
 		B5F407C02340998500D43C80 /* ScoreViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScoreViewController.h; sourceTree = "<group>"; };
 		B5F407C12340998500D43C80 /* ScoreViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScoreViewController.m; sourceTree = "<group>"; };
 		B5F407C22340998500D43C80 /* ScoreViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScoreViewController.xib; sourceTree = "<group>"; };
@@ -218,6 +221,8 @@
 				B5F407C52340A2D100D43C80 /* RankTableViewCell.h */,
 				B5F407C62340A2D100D43C80 /* RankTableViewCell.m */,
 				B5F407C72340A2D100D43C80 /* RankTableViewCell.xib */,
+				B5A7D2F4234E36B0007F9BAF /* wshFile.c */,
+				B5A7D2F5234E36B0007F9BAF /* wshFile.h */,
 			);
 			path = GameView;
 			sourceTree = "<group>";
@@ -362,6 +367,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B513306623379620007A4A7E /* GameViewController.m in Sources */,
+				B5A7D2F6234E36B0007F9BAF /* wshFile.c in Sources */,
 				B5F407C82340A2D100D43C80 /* RankTableViewCell.m in Sources */,
 				B513307A23379CE8007A4A7E /* TaskViewController.m in Sources */,
 				B513307523379CC6007A4A7E /* PersonalViewController.m in Sources */,

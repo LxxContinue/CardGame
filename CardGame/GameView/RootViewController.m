@@ -20,7 +20,7 @@
 @property (nonatomic) UserInfo *userInfo;
 
 @end
-static const CGFloat kTimeOutTime = 10.f;
+static const CGFloat kTimeOutTime = 20.f;
 
 @implementation RootViewController
 
@@ -57,6 +57,9 @@ static const CGFloat kTimeOutTime = 10.f;
             NSDictionary *cardDic = [[NSDictionary alloc]initWithDictionary:[dict objectForKey:@"data"]];
             NSLog(@"id:%@  card:%@",[cardDic objectForKey:@"id"],[cardDic objectForKey:@"card"]);
             
+            NSArray *arr = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
+            NSLog(@"beginGame返回正确：%@",arr);
+            
             dispatch_async(dispatch_get_main_queue(), ^{
                 gc.cardStr = [cardDic objectForKey:@"card"];
                 gc.gameID = [cardDic objectForKey:@"id"];
@@ -83,39 +86,45 @@ static const CGFloat kTimeOutTime = 10.f;
     [self presentViewController:rc animated:YES completion:nil];
 }
 - (IBAction)historyAction:(UIButton *)sender {
+    NSLog(@"点击历史战局");
     HistoryViewController *hc = [[HistoryViewController alloc]init];
-    
+
     // 1.创建请求
-    NSURL *url = [NSURL URLWithString:@"https://api.shisanshui.rtxux.xyz/history"];
-    //    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    //NSURL *url = [NSURL URLWithString:@"https://api.shisanshui.rtxux.xyz/history"];
+
+    NSString *urlStr = [NSString stringWithFormat: @"https://api.shisanshui.rtxux.xyz/history?player_id=%@&page=%@&limit=%@",self.userInfo.user_id,@"7",@"1"];
     
+    NSURL *url = [NSURL URLWithString:urlStr];
     NSMutableURLRequest *request=[NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:kTimeOutTime];
     request.HTTPMethod = @"GET";
     // 2.设置请求头
     [request setValue:self.token forHTTPHeaderField:@"X-Auth-Token"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     
     // 3.设置请求体
-    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    [dic setObject:self.userInfo.user_id forKey:@"player_id"];
-    [dic setObject:@"10" forKey:@"limit"];
-    [dic setObject:@"1" forKey:@"page"];
-    
-    NSData *data = [NSJSONSerialization dataWithJSONObject:dic options:0 error:nil];
-    request.HTTPBody = data;
+//    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+//    [dic setObject:self.userInfo.user_id forKey:@"player_id"];
+//    [dic setObject:@"1" forKey:@"limit"];
+//    [dic setObject:@"1" forKey:@"page"];
+//
+//    NSData *data = [NSJSONSerialization dataWithJSONObject:dic options:0 error:nil];
+//    request.HTTPBody = data;
     
     
     // 4.发送请求
-    //    NSURLSession *session = [NSURLSession sharedSession];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[[NSOperationQueue alloc]init]];
     
-    //__block  NSString *result = @"";
     NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         
         if (!error) {
-            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
             
-            NSDictionary *cardDic = [[NSDictionary alloc]initWithDictionary:[dict objectForKey:@"data"]];
-            NSLog(@"id:%@  card:%@",[cardDic objectForKey:@"id"],[cardDic objectForKey:@"score"]);
+//            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+//
+//            NSDictionary *cardDic = [[NSDictionary alloc]initWithDictionary:[dict objectForKey:@"data"]];
+//            NSLog(@"id:%@  card:%@",[cardDic objectForKey:@"id"],[cardDic objectForKey:@"score"]);
+            
+            NSArray *arr = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
+            NSLog(@"history返回正确：%@",arr);
             
             dispatch_async(dispatch_get_main_queue(), ^{
 //                hc.cardStr = [cardDic objectForKey:@"card"];
@@ -132,7 +141,7 @@ static const CGFloat kTimeOutTime = 10.f;
     [dataTask resume];
     
     
-    [self presentViewController:hc animated:YES completion:nil];
+    //[self presentViewController:hc animated:YES completion:nil];
 }
 
 

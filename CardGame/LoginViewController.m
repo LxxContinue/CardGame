@@ -106,7 +106,7 @@ static const CGFloat kTimeOutTime = 10.f;
             result = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
             NSLog(@"返回正确：%@",result);
             NSArray *arr = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
-            NSLog(@"返回正确：%@",arr);
+            NSLog(@"login返回正确：%@",arr);
             
             NSLog(@"**** token:%@   id:%@",userInfo.token,userInfo.user_id);
             

@@ -11,20 +11,26 @@
 
 #import "LxxInterfaceConnection.h"
 #import "UserInfo.h"
+#import "wshFile.h"
 
 @interface GameViewController ()
 
+@property (nonatomic) UserInfo *userInfo;
 @property (nonatomic) NSString * token ;
 @property (nonatomic) NSMutableArray *cardArr;
 
 @end
 
-static const CGFloat kTimeOutTime = 10.f;
+static const CGFloat kTimeOutTime = 20.f;
 
 @implementation GameViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    NSData *deData = [[NSUserDefaults standardUserDefaults] objectForKey:@"userInfo"];
+    _userInfo = [NSKeyedUnarchiver unarchiveObjectWithData:deData];
+    self.token = _userInfo.token;
 
     self.cardLabel.text = self.cardStr;
     
@@ -35,9 +41,36 @@ static const CGFloat kTimeOutTime = 10.f;
 
 -(void)creatCard{
     self.cardArr = [[NSMutableArray alloc]init];
-    [self.cardArr addObject:[NSString stringWithFormat:@"*2 *3 *4"]];
-    [self.cardArr addObject:[NSString stringWithFormat:@"*5 *6 *7 *8 *9"]];
-    [self.cardArr addObject:[NSString stringWithFormat:@"*10 *J *Q *K *A"]];
+    
+    char tempChar[60]={};
+    NSString * tempString = self.cardStr;
+    tempString = [tempString stringByReplacingOccurrencesOfString:@" " withString:@""];
+    strcpy(tempChar,(char *)[tempString UTF8String]);
+
+    //根据wsh算法获取牌
+    NSString *newCard = [NSString stringWithFormat:@"%s",cardmain(tempChar)];
+    NSLog(@"sortedCard: %@",newCard);
+    //切分三个字符串
+//    NSRange range1 = NSMakeRange(0, 8);
+//
+//    NSString *qiandun = [newCard substringWithRange:range1];
+//
+//    NSRange range2 = NSMakeRange(9, 14);
+//    NSString *zhongdun = [newCard substringWithRange:range2];
+//
+//    NSRange range3 = NSMakeRange(24, 14);
+//    NSString *houdun = [newCard substringWithRange:range3];
+    
+    NSArray *cardArr = [newCard componentsSeparatedByString:@" "];
+    NSString *qiandun = [NSString stringWithFormat:@"%@ %@ %@",cardArr[0],cardArr[1],cardArr[2]];
+    NSString *zhongdun = [NSString stringWithFormat:@"%@ %@ %@ %@ %@",cardArr[3],cardArr[4],cardArr[5],cardArr[6],cardArr[7]];
+    NSString *houdun = [NSString stringWithFormat:@"%@ %@ %@ %@ %@",cardArr[8],cardArr[9],cardArr[10],cardArr[11],cardArr[12]];
+    
+    NSLog(@"qian%@--zhong%@--hou%@",qiandun,zhongdun,houdun);
+
+    [self.cardArr addObject:qiandun];
+    [self.cardArr addObject:zhongdun];
+    [self.cardArr addObject:houdun];
 }
 
 - (IBAction)popAction:(UIButton *)sender {
@@ -55,6 +88,7 @@ static const CGFloat kTimeOutTime = 10.f;
     request.HTTPMethod = @"POST";
     // 2.设置请求头
     [request setValue:self.token forHTTPHeaderField:@"X-Auth-Token"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     // 3.设置请求体
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     [dic setObject:self.cardArr forKey:@"card"];
@@ -72,8 +106,8 @@ static const CGFloat kTimeOutTime = 10.f;
         if (!error) {
             NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
             
-            NSDictionary *dataDic = [[NSDictionary alloc]initWithDictionary:[dict objectForKey:@"data"]];
-            NSLog(@"msg: %@",[dataDic objectForKey:@"msg"]);
+//            NSDictionary *dataDic = [[NSDictionary alloc]initWithDictionary:[dict objectForKey:@"data"]];
+//            NSLog(@"msg: %@",[dataDic objectForKey:@"msg"]);
             
             NSArray *arr = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
             NSLog(@"返回正确：%@",arr);
