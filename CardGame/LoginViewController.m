@@ -30,6 +30,9 @@ static const CGFloat kTimeOutTime = 10.f;
     self.passwordText.keyboardType = UIReturnKeyDefault;
     self.passwordText.delegate = self;
     
+    self.passwordText.text = @"123";
+    self.usernameText.text = @"031702431";
+    
 }
 
 - (IBAction)loginBtnAction:(UIButton *)sender {

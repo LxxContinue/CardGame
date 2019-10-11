@@ -1,0 +1,32 @@
+//
+//  HisDetailViewController.m
+//  CardGame
+//
+//  Created by LXX on 2019/10/11.
+//  Copyright © 2019年 LXX. All rights reserved.
+//
+
+#import "HisDetailViewController.h"
+
+@interface HisDetailViewController ()
+
+@end
+
+@implementation HisDetailViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view from its nib.
+}
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+@end

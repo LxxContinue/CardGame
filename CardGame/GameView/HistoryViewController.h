@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface HistoryViewController : UIViewController
 
+@property(nonatomic) NSArray * hisArr;
+
 @end
 
 NS_ASSUME_NONNULL_END
