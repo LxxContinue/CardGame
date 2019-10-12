@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface HisDetailViewController : UIViewController
 
-@property(nonatomic) NSArray * detailArr;
+@property(nonatomic) NSMutableArray * detailArr;
 
 @end
 

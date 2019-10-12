@@ -31,7 +31,7 @@ static const CGFloat kTimeOutTime = 10.f;
     self.passwordText.delegate = self;
     
     self.passwordText.text = @"123";
-    self.usernameText.text = @"031702431";
+    self.usernameText.text = @"031702432";
     
 }
 

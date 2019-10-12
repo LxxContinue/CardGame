@@ -84,57 +84,8 @@ static const CGFloat kTimeOutTime = 30.f;
     [self presentViewController:pc animated:YES completion:nil];
 }
 - (IBAction)rankingListAction:(UIButton *)sender {
-//    RankListViewController *rc = [[RankListViewController alloc]init];
-//    [self presentViewController:rc animated:YES completion:nil];
-    
-    NSLog(@"点击战局详情");
-    // 1.创建请求
-    NSLog(@"%ld",(long)self.count);
-    NSString *urlStr = [NSString stringWithFormat: @"https://api.shisanshui.rtxux.xyz/history/%ld",(long)_count];
-    self.count++;
-    NSURL *url = [NSURL URLWithString:urlStr];
-    NSMutableURLRequest *request=[NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:kTimeOutTime];
-    request.HTTPMethod = @"GET";
-    // 2.设置请求头
-    [request setValue:self.token forHTTPHeaderField:@"X-Auth-Token"];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    // 4.发送请求
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[[NSOperationQueue alloc]init]];
-    
-    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        
-        if (!error) {
-            
-//            NSArray *arr = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
-//            NSLog(@"历史战局详情：%@",arr);
-            
-            NSDictionary *dictionary=[self readJsonData:data];
-            NSLog(@"历史战局详情：%@",dictionary);
-            NSLog(@"id 返回正确：%@",[dictionary objectForKey:@"id"]);
-            
-//            NSMutableArray *playerArr = [[NSMutableArray alloc]init];
-//            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-//            NSArray *gameArr = [dict objectForKey:@"detail"];
-////            for (NSDictionary *Dic in dict) {
-////                GameInfo *Info = [[GameInfo alloc] initWithNSDictionary:Dic];
-////                [playerArr addObject:Info];
-////            }
-//            NSLog(@"diccount：%lu",(unsigned long)dict.count);
-//            NSLog(@"arrcount：%lu",(unsigned long)gameArr.count);
-//            NSLog(@"id 返回正确：%@",[dict objectForKey:@"id"]);
-            
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-
-                //NSLog(@"player count %lu",(unsigned long)playerArr.count);
-            });
-            
-        }else{
-            NSLog(@"错误信息：%@",error);
-        }
-    }];
-    [dataTask resume];
-    
+    RankListViewController *rc = [[RankListViewController alloc]init];
+    [self presentViewController:rc animated:YES completion:nil];
 }
 - (IBAction)historyAction:(UIButton *)sender {
     NSLog(@"点击历史战局");
@@ -142,7 +93,7 @@ static const CGFloat kTimeOutTime = 30.f;
     // 1.创建请求
     //NSURL *url = [NSURL URLWithString:@"https://api.shisanshui.rtxux.xyz/history"];
 
-    NSString *urlStr = [NSString stringWithFormat: @"https://api.shisanshui.rtxux.xyz/history?player_id=%@&limit=%@&page=%@",self.userInfo.user_id,@"10",@"0"];
+    NSString *urlStr = [NSString stringWithFormat: @"https://api.shisanshui.rtxux.xyz/history?player_id=%@&limit=%@&page=%@",self.userInfo.user_id,@"100",@"0"];
     
     NSURL *url = [NSURL URLWithString:urlStr];
     NSMutableURLRequest *request=[NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:kTimeOutTime];

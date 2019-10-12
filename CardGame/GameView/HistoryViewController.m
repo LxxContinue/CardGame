@@ -115,20 +115,24 @@ static const CGFloat kTimeOutTime = 30.f;
 
             NSDictionary *dictionary=[self readJsonData:data];
             NSLog(@"历史战局详情：%@",dictionary);
-            NSLog(@"id 返回正确：%@",[dictionary objectForKey:@"id"]);
+//            NSLog(@"id 返回正确：%@",[dictionary objectForKey:@"id"]);
+//            NSLog(@"status 返回正确：%@",[dictionary objectForKey:@"status"]);
+//            NSLog(@"data 返回正确：%@",[dictionary objectForKey:@"data"]);
             
-            if([dictionary objectForKey:@"status"] == 0){
+            NSMutableArray *detailArr =[[NSMutableArray alloc]init];
+            if([[dictionary objectForKey:@"status"] integerValue] == 0){
                 NSDictionary *dict = [dictionary objectForKey:@"data"];
-                NSArray *detailArr = [dict objectForKey:@"detail"];
+                detailArr = [dict objectForKey:@"detail"];
                 NSLog(@"detail: %lu",(unsigned long)detailArr.count);
             }
 
             
             dispatch_async(dispatch_get_main_queue(), ^{
-                
-//                HisDetailViewController *dvc = [[HisDetailViewController alloc]init];
-//                dvc.detailArr = detailArr;
-//                [self presentViewController:dvc animated:YES completion:nil];
+                if([[dictionary objectForKey:@"status"] integerValue] == 0){
+                    HisDetailViewController *dvc = [[HisDetailViewController alloc]init];
+                    dvc.detailArr = detailArr;
+                    [self presentViewController:dvc animated:YES completion:nil];
+                }
             });
             
         }else{
