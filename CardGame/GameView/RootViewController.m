@@ -13,7 +13,8 @@
 #import "PersonalViewController.h"
 #import "TaskViewController.h"
 #import "UserInfo.h"
-#import "GameInfo.h"
+
+#import "LxxInterfaceConnection.h"
 
 @interface RootViewController ()
 
@@ -89,76 +90,71 @@ static const CGFloat kTimeOutTime = 30.f;
 }
 - (IBAction)historyAction:(UIButton *)sender {
     NSLog(@"点击历史战局");
-
-    // 1.创建请求
-    //NSURL *url = [NSURL URLWithString:@"https://api.shisanshui.rtxux.xyz/history"];
-
-    NSString *urlStr = [NSString stringWithFormat: @"https://api.shisanshui.rtxux.xyz/history?player_id=%@&limit=%@&page=%@",self.userInfo.user_id,@"100",@"0"];
     
-    NSURL *url = [NSURL URLWithString:urlStr];
-    NSMutableURLRequest *request=[NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:kTimeOutTime];
-    request.HTTPMethod = @"GET";
-    // 2.设置请求头
-    [request setValue:self.token forHTTPHeaderField:@"X-Auth-Token"];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    NSMutableDictionary * parm = [[NSMutableDictionary alloc]init];
+    [parm setObject:@"1" forKey:@"page"];
+    [parm setObject:self.userInfo.user_id forKey:@"player_id"];
+    [parm setObject:@"100" forKey:@"limit"];
     
-    // 3.设置请求体
-//    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-//    [dic setObject:self.userInfo.user_id forKey:@"player_id"];
-//    [dic setObject:@"1" forKey:@"limit"];
-//    [dic setObject:@"1" forKey:@"page"];
-//
-//    NSData *data = [NSJSONSerialization dataWithJSONObject:dic options:0 error:nil];
-//    request.HTTPBody = data;
+//    NSString *rul = [NSString stringWithFormat: @"https://api.shisanshui.rtxux.xyz/history"];
+    NSString *rul = [NSString stringWithFormat: @"https://api.shisanshui.rtxux.xyz/history?player_id=%@&limit=%@&page=%@",self.userInfo.user_id,@"100",@"0"];
     
-    
-    // 4.发送请求
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[[NSOperationQueue alloc]init]];
-    
-    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        
-        if (!error) {
-            
-//            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-//
-//            NSDictionary *cardDic = [[NSDictionary alloc]initWithDictionary:[dict objectForKey:@"data"]];
-//            NSLog(@"id:%@  card:%@",[cardDic objectForKey:@"id"],[cardDic objectForKey:@"score"]);
-            
-//            NSArray *arr = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
-//            NSLog(@"history返回正确：%@",arr);
-            
-            
-            
-            NSDictionary *dictionary = [self readJsonData:data];
-            NSLog(@"game  %@",dictionary);
-            
+    LxxInterfaceConnection *connect = [[LxxInterfaceConnection alloc] init];
+    [connect connetNetWithGetMethod:rul parms:parm block:^(int fail,NSString *dataMessage,NSDictionary *dictionary) {
+        if (fail ==0) {
             NSMutableArray *hisArr = [[NSMutableArray alloc]init];
             hisArr = [dictionary objectForKey:@"data"];
             
             NSLog(@"count :%lu",(unsigned long)hisArr.count);
-            
-            //            NSMutableArray *playerArr = [[NSMutableArray alloc]init];
-            //            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-            //            NSArray *gameArr = [dict objectForKey:@"detail"];
-            ////            for (NSDictionary *Dic in dict) {
-            ////                GameInfo *Info = [[GameInfo alloc] initWithNSDictionary:Dic];
-            ////                [playerArr addObject:Info];
-            ////            }
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 HistoryViewController *hc = [[HistoryViewController alloc]init];
                 hc.hisArr = hisArr;
                 [self presentViewController:hc animated:YES completion:nil];
             });
-            
-        }else{
-            NSLog(@"错误信息：%@",error);
         }
     }];
-    [dataTask resume];
     
-    //HistoryViewController *hc = [[HistoryViewController alloc]init];
-    //[self presentViewController:hc animated:YES completion:nil];
+
+//    // 1.创建请求
+//    //NSURL *url = [NSURL URLWithString:@"https://api.shisanshui.rtxux.xyz/history"];
+//
+//    NSString *urlStr = [NSString stringWithFormat: @"https://api.shisanshui.rtxux.xyz/history?player_id=%@&limit=%@&page=%@",self.userInfo.user_id,@"100",@"0"];
+//
+//    NSURL *url = [NSURL URLWithString:urlStr];
+//    NSMutableURLRequest *request=[NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:kTimeOutTime];
+//    request.HTTPMethod = @"GET";
+//    // 2.设置请求头
+//    [request setValue:self.token forHTTPHeaderField:@"X-Auth-Token"];
+//    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+//
+//    // 3.设置请求体
+//
+//    // 4.发送请求
+//    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[[NSOperationQueue alloc]init]];
+//
+//    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+//
+//        if (!error) {
+//            NSDictionary *dictionary = [self readJsonData:data];
+//            NSLog(@"game  %@",dictionary);
+//
+//            NSMutableArray *hisArr = [[NSMutableArray alloc]init];
+//            hisArr = [dictionary objectForKey:@"data"];
+//
+//            NSLog(@"count :%lu",(unsigned long)hisArr.count);
+//
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                HistoryViewController *hc = [[HistoryViewController alloc]init];
+//                hc.hisArr = hisArr;
+//                [self presentViewController:hc animated:YES completion:nil];
+//            });
+//
+//        }else{
+//            NSLog(@"错误信息：%@",error);
+//        }
+//    }];
+//    [dataTask resume];
 }
 
 #pragma mark - readJson

@@ -10,6 +10,7 @@
 #import "RankTableViewCell.h"
 #import "HisDetailViewController.h"
 #import "UserInfo.h"
+#import "LxxInterfaceConnection.h"
 
 #define SCREEN_WIDTH ([[UIScreen mainScreen] bounds].size.width)
 #define SCREEN_HEIGHT ([[UIScreen mainScreen] bounds].size.height)
@@ -85,7 +86,15 @@ static const CGFloat kTimeOutTime = 30.f;
     cell.userID.text = [NSString stringWithFormat:@"%@",[gameDic objectForKey:@"id"]];
     
     NSArray *card = [gameDic objectForKey:@"card"];
-    cell.contentLabel.text = [NSString stringWithFormat:@"%@,%@,%@",card[0],card[1],card[2]];
+    if (card.count>=3) {
+        NSString *card1 = [NSString stringWithFormat:@"%@",card[0]];
+        NSString *card2 = [NSString stringWithFormat:@"%@",card[1]];
+        NSString *card3 = [NSString stringWithFormat:@"%@",card[2]];
+        cell.contentLabel.text = [NSString stringWithFormat:@"%@,%@,%@",card1,card2,card3];
+    }
+    else{
+        cell.contentLabel.text = @"牌数有错误";
+    }
     
     cell.scoreLabel.text = [NSString stringWithFormat:@"%@",[gameDic objectForKey:@"score"]];
     
@@ -96,51 +105,66 @@ static const CGFloat kTimeOutTime = 30.f;
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     NSDictionary *gameDic = self.hisArr[indexPath.row];
-    NSLog(@"点击战局详情");
-    NSLog(@"game id: %@",[gameDic objectForKey:@"id"]);
-    // 1.创建请求
-    NSString *urlStr = [NSString stringWithFormat: @"https://api.shisanshui.rtxux.xyz/history/%@",[gameDic objectForKey:@"id"]];
-    NSURL *url = [NSURL URLWithString:urlStr];
-    NSMutableURLRequest *request=[NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:kTimeOutTime];
-    request.HTTPMethod = @"GET";
-    // 2.设置请求头
-    [request setValue:self.token forHTTPHeaderField:@"X-Auth-Token"];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    // 4.发送请求
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[[NSOperationQueue alloc]init]];
-    
-    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+    NSString *url = [NSString stringWithFormat: @"https://api.shisanshui.rtxux.xyz/history/%@",[gameDic objectForKey:@"id"]];
+    NSDictionary *dic = [[NSDictionary alloc]init];
+    LxxInterfaceConnection *connect = [[LxxInterfaceConnection alloc] init];
+    [connect connetNetWithGetMethod:url parms:dic block:^(int fail,NSString *dataMessage,NSDictionary *dictionary) {
         
-        if (!error) {
-
-            NSDictionary *dictionary=[self readJsonData:data];
-            NSLog(@"历史战局详情：%@",dictionary);
-//            NSLog(@"id 返回正确：%@",[dictionary objectForKey:@"id"]);
-//            NSLog(@"status 返回正确：%@",[dictionary objectForKey:@"status"]);
-//            NSLog(@"data 返回正确：%@",[dictionary objectForKey:@"data"]);
-            
             NSMutableArray *detailArr =[[NSMutableArray alloc]init];
-            if([[dictionary objectForKey:@"status"] integerValue] == 0){
+            if(fail == 0){
                 NSDictionary *dict = [dictionary objectForKey:@"data"];
                 detailArr = [dict objectForKey:@"detail"];
                 NSLog(@"detail: %lu",(unsigned long)detailArr.count);
-            }
-
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                if([[dictionary objectForKey:@"status"] integerValue] == 0){
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
                     HisDetailViewController *dvc = [[HisDetailViewController alloc]init];
                     dvc.detailArr = detailArr;
                     [self presentViewController:dvc animated:YES completion:nil];
-                }
-            });
-            
-        }else{
-            NSLog(@"错误信息：%@",error);
-        }
+                });
+            }
+
     }];
-    [dataTask resume];
     
+//    NSDictionary *gameDic = self.hisArr[indexPath.row];
+//    NSLog(@"点击战局详情");
+//    NSLog(@"game id: %@",[gameDic objectForKey:@"id"]);
+//    // 1.创建请求
+//    NSString *urlStr = [NSString stringWithFormat: @"https://api.shisanshui.rtxux.xyz/history/%@",[gameDic objectForKey:@"id"]];
+//    NSURL *url = [NSURL URLWithString:urlStr];
+//    NSMutableURLRequest *request=[NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:kTimeOutTime];
+//    request.HTTPMethod = @"GET";
+//    // 2.设置请求头
+//    [request setValue:self.token forHTTPHeaderField:@"X-Auth-Token"];
+//    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+//    // 4.发送请求
+//    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[[NSOperationQueue alloc]init]];
+//
+//    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+//
+//        if (!error) {
+//            NSDictionary *dictionary=[self readJsonData:data];
+//            NSLog(@"历史战局详情：%@",dictionary);
+//
+//            NSMutableArray *detailArr =[[NSMutableArray alloc]init];
+//            if([[dictionary objectForKey:@"status"] integerValue] == 0){
+//                NSDictionary *dict = [dictionary objectForKey:@"data"];
+//                detailArr = [dict objectForKey:@"detail"];
+//                NSLog(@"detail: %lu",(unsigned long)detailArr.count);
+//            }
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                if([[dictionary objectForKey:@"status"] integerValue] == 0){
+//                    HisDetailViewController *dvc = [[HisDetailViewController alloc]init];
+//                    dvc.detailArr = detailArr;
+//                    [self presentViewController:dvc animated:YES completion:nil];
+//                }
+//            });
+//
+//        }else{
+//            NSLog(@"错误信息：%@",error);
+//        }
+//    }];
+//    [dataTask resume];
 }
 
 - (IBAction)popAction:(UIButton *)sender {

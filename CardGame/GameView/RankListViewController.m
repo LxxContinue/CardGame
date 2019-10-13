@@ -19,6 +19,8 @@
 
 @property (nonatomic,strong) NSMutableArray *rankArr;
 
+@property (nonatomic,strong) NSURL *location;
+
 @end
 
 @implementation RankListViewController
@@ -26,7 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self loadData];
+    [self loadLocation];
     
     UILabel *titile = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2-50, 10, 100, 50)];
     titile.text = @"英雄榜";
@@ -39,49 +41,69 @@
     [self creatTabelView];
     
 }
--(void)loadData{
-    //1.创建NSURLSession对象（可以获取单例对象）
+-(void)loadLocation{
+
     NSURLSession *session = [NSURLSession sharedSession];
-    
-    //2.根据NSURLSession对象创建一个Task
-    
-    NSURL *url = [NSURL URLWithString:@"http://shisanshui.rtxux.xyz/game/rank"];
-    
-//    NSString* URLString = @"http://www.baidu.com";
-//    NSURL *url = [NSURL URLWithString:URLString];
-    
+
+    NSURL *url = [NSURL URLWithString:@"https://api.shisanshui.rtxux.xyz/rank/rank.json"];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    
-    [request setHTTPMethod:@"HEAD"];
-    
-    //方法参数说明
-    /*
-     注意：该block是在子线程中调用的，如果拿到数据之后要做一些UI刷新操作，那么需要回到主线程刷新
-     第一个参数：需要发送的请求对象
-     block:当请求结束拿到服务器响应的数据时调用block
-     block-NSData:该请求的响应体
-     block-NSURLResponse:存放本次请求的响应信息，响应头，真实类型为NSHTTPURLResponse
-     block-NSErroe:请求错误信息
-     */
+
+    //[request setHTTPMethod:@"HEAD"];
+
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+
     NSURLSessionDataTask * dataTask =  [session dataTaskWithRequest:request completionHandler:^(NSData * __nullable data, NSURLResponse * __nullable response, NSError * __nullable error) {
-        
-        //拿到响应头信息
+
+
         NSHTTPURLResponse *res = (NSHTTPURLResponse *)response;
-        //4.解析拿到的响应数据
-        NSLog(@"head: %@\n%@",[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding],res.allHeaderFields);
+
+        //NSLog(@"head: %@\n",[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding]);
+        NSLog(@"res: %@",res);
+        
+        self.location = res.URL;
+        
+        NSArray *arr = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
+        NSLog(@"login返回正确：%@",arr);
+
+//        NSDictionary *httpResponseHeaderFields = [res allHeaderFields];
+//        NSLog(@"header!!!:%@",httpResponseHeaderFields);
+//        NSLog(@"location: %@",[httpResponseHeaderFields objectForKey:@"Location"]);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self loadData];
+        });
+        
+
     }];
-    
-    //3.执行Task
-    //注意：刚创建出来的task默认是挂起状态的，需要调用该方法来启动任务（执行任务）
     [dataTask resume];
-    
 }
 
+-(void)loadData{
+    NSURLSession *session = [NSURLSession sharedSession];
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:self.location];
+
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    
+    NSURLSessionDataTask * dataTask =  [session dataTaskWithRequest:request completionHandler:^(NSData * __nullable data, NSURLResponse * __nullable response, NSError * __nullable error) {
+
+        
+        self.rankArr = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
+        NSLog(@"login返回正确：%@",self.rankArr);
+        
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
+        
+        
+    }];
+    [dataTask resume];
+}
 
 #pragma mark - Private DataConfiguration
 - (void)dataConfiguration{
     self.rankArr = [[NSMutableArray alloc]init];
-
+    self.location =[[NSURL alloc]init];
 }
 
 
@@ -105,7 +127,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 10;
+    return self.rankArr.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -126,9 +148,11 @@
     
     RankTableViewCell *cell = [RankTableViewCell cellInit:self.tableView];
     
-    cell.userID.text = [NSString stringWithFormat:@"%ld",(long)indexPath.row];
-    cell.contentLabel.text = [NSString stringWithFormat:@"luzhiyang03170240%ld",(long)indexPath.row+1];
-    cell.scoreLabel.text = @"100";
+    NSDictionary *playerDic = self.rankArr[indexPath.row];
+    
+    cell.userID.text = [NSString stringWithFormat:@"%@",[playerDic objectForKey:@"player_id"]];
+    cell.contentLabel.text = [NSString stringWithFormat:@"%@",[playerDic objectForKey:@"name"]];
+    cell.scoreLabel.text = [NSString stringWithFormat:@"%@",[playerDic objectForKey:@"score"]];
     
     return  cell;
 }

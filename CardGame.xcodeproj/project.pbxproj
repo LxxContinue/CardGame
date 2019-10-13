@@ -32,7 +32,6 @@
 		B537DE1B233FA66F0089C579 /* RegistViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B537DE19233FA66F0089C579 /* RegistViewController.xib */; };
 		B5A7D2B2234DE2AF007F9BAF /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A7D2B1234DE2AF007F9BAF /* UserInfo.m */; };
 		B5A7D2F6234E36B0007F9BAF /* wshFile.c in Sources */ = {isa = PBXBuildFile; fileRef = B5A7D2F4234E36B0007F9BAF /* wshFile.c */; };
-		B5DE9A0C235098970012F3C4 /* GameInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DE9A0B235098970012F3C4 /* GameInfo.m */; };
 		B5DE9A102350A6EB0012F3C4 /* HisDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DE9A0E2350A6EB0012F3C4 /* HisDetailViewController.m */; };
 		B5DE9A112350A6EB0012F3C4 /* HisDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5DE9A0F2350A6EB0012F3C4 /* HisDetailViewController.xib */; };
 		B5F407C32340998500D43C80 /* ScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F407C12340998500D43C80 /* ScoreViewController.m */; };
@@ -102,8 +101,6 @@
 		B5A7D2B1234DE2AF007F9BAF /* UserInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserInfo.m; sourceTree = "<group>"; };
 		B5A7D2F4234E36B0007F9BAF /* wshFile.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = wshFile.c; sourceTree = "<group>"; };
 		B5A7D2F5234E36B0007F9BAF /* wshFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wshFile.h; sourceTree = "<group>"; };
-		B5DE9A0A235098970012F3C4 /* GameInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameInfo.h; sourceTree = "<group>"; };
-		B5DE9A0B235098970012F3C4 /* GameInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameInfo.m; sourceTree = "<group>"; };
 		B5DE9A0D2350A6EB0012F3C4 /* HisDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HisDetailViewController.h; sourceTree = "<group>"; };
 		B5DE9A0E2350A6EB0012F3C4 /* HisDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HisDetailViewController.m; sourceTree = "<group>"; };
 		B5DE9A0F2350A6EB0012F3C4 /* HisDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HisDetailViewController.xib; sourceTree = "<group>"; };
@@ -205,8 +202,6 @@
 		B537DE16233FA1B50089C579 /* GameView */ = {
 			isa = PBXGroup;
 			children = (
-				B5DE9A0A235098970012F3C4 /* GameInfo.h */,
-				B5DE9A0B235098970012F3C4 /* GameInfo.m */,
 				B513305E2337919E007A4A7E /* RootViewController.h */,
 				B513305F2337919E007A4A7E /* RootViewController.m */,
 				B51330602337919E007A4A7E /* RootViewController.xib */,
@@ -216,12 +211,6 @@
 				B5F407C02340998500D43C80 /* ScoreViewController.h */,
 				B5F407C12340998500D43C80 /* ScoreViewController.m */,
 				B5F407C22340998500D43C80 /* ScoreViewController.xib */,
-				B513307723379CE8007A4A7E /* TaskViewController.h */,
-				B513307823379CE8007A4A7E /* TaskViewController.m */,
-				B513307923379CE8007A4A7E /* TaskViewController.xib */,
-				B513307223379CC6007A4A7E /* PersonalViewController.h */,
-				B513307323379CC6007A4A7E /* PersonalViewController.m */,
-				B513307423379CC6007A4A7E /* PersonalViewController.xib */,
 				B513306D2337965A007A4A7E /* RankListViewController.h */,
 				B513306E2337965A007A4A7E /* RankListViewController.m */,
 				B513306F2337965A007A4A7E /* RankListViewController.xib */,
@@ -236,8 +225,22 @@
 				B5F407C72340A2D100D43C80 /* RankTableViewCell.xib */,
 				B5A7D2F4234E36B0007F9BAF /* wshFile.c */,
 				B5A7D2F5234E36B0007F9BAF /* wshFile.h */,
+				B59B2134235225C400154FC1 /* others */,
 			);
 			path = GameView;
+			sourceTree = "<group>";
+		};
+		B59B2134235225C400154FC1 /* others */ = {
+			isa = PBXGroup;
+			children = (
+				B513307723379CE8007A4A7E /* TaskViewController.h */,
+				B513307823379CE8007A4A7E /* TaskViewController.m */,
+				B513307923379CE8007A4A7E /* TaskViewController.xib */,
+				B513307223379CC6007A4A7E /* PersonalViewController.h */,
+				B513307323379CC6007A4A7E /* PersonalViewController.m */,
+				B513307423379CC6007A4A7E /* PersonalViewController.xib */,
+			);
+			path = others;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -392,7 +395,6 @@
 				B51330612337919E007A4A7E /* RootViewController.m in Sources */,
 				B5DE9A102350A6EB0012F3C4 /* HisDetailViewController.m in Sources */,
 				B537DE1A233FA66F0089C579 /* RegistViewController.m in Sources */,
-				B5DE9A0C235098970012F3C4 /* GameInfo.m in Sources */,
 				B5238CFC233E292B000B2E77 /* LoginViewController.m in Sources */,
 				B513306B23379634007A4A7E /* HistoryViewController.m in Sources */,
 				B51330702337965A007A4A7E /* RankListViewController.m in Sources */,
