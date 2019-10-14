@@ -24,7 +24,6 @@
 
 @end
 
-static const CGFloat kTimeOutTime = 30.f;
 
 @implementation HistoryViewController
 

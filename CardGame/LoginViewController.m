@@ -50,31 +50,10 @@ static const CGFloat kTimeOutTime = 10.f;
     }
 
     [self login];
-    
-//    RootViewController *rvc = [[RootViewController alloc ] init];
-//    // 获取主代理
-//    AppDelegate *delegete = (AppDelegate *)[[UIApplication  sharedApplication] delegate];
-//    delegete.window.rootViewController = rvc;
+
 }
 
 -(void)login{
-//    LxxInterfaceConnection *connect = [[LxxInterfaceConnection alloc] init];
-//    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-//    [dic setObject:_usernameText.text forKey:@"username"];
-//    [dic setObject:_passwordText.text forKey:@"password"];
-//    [connect connetNetWithHaddleV2:@"auth/login" parms:dic type:1 needToken:NO block:^(int fail,NSString *dataMessage,NSDictionary *dictionary){
-//
-//        if(fail == 0) {
-//            RootViewController *rvc = [[RootViewController alloc ] init];
-//            // 获取主代理
-//            AppDelegate *delegete = (AppDelegate *)[[UIApplication  sharedApplication] delegate];
-//            delegete.window.rootViewController = rvc;
-//
-//        } else {
-//            NSLog(@"login error");
-//        }
-//    }];
-    
     // 1.创建请求
     NSURL *url = [NSURL URLWithString:@"https://api.shisanshui.rtxux.xyz/auth/login"];
     //    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];

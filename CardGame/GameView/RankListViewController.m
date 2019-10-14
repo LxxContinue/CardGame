@@ -30,12 +30,6 @@
     
     [self loadLocation];
     
-//    UILabel *titile = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2-50, 10, 100, 50)];
-//    titile.text = @"英雄榜";
-//    titile.textColor = [UIColor redColor];
-//    titile.textAlignment = NSTextAlignmentCenter;
-//    titile.font = [UIFont systemFontOfSize:25];
-//    [self.view addSubview:titile];
     
     [self dataConfiguration];
     [self creatTabelView];
@@ -129,13 +123,6 @@
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    UITableViewCell * cell=[tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
-//    if(!cell){
-//        cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"UITableViewCell"];
-//    }
-//    cell.textLabel.text = @"name";
-//    cell.detailTextLabel.text = @"score";
-    
     RankTableViewCell *cell = [RankTableViewCell cellInit:self.tableView];
     
     NSDictionary *playerDic = self.rankArr[indexPath.row];

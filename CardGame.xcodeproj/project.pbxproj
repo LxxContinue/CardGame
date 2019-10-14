@@ -208,9 +208,6 @@
 				B513306323379620007A4A7E /* GameViewController.h */,
 				B513306423379620007A4A7E /* GameViewController.m */,
 				B513306523379620007A4A7E /* GameViewController.xib */,
-				B5F407C02340998500D43C80 /* ScoreViewController.h */,
-				B5F407C12340998500D43C80 /* ScoreViewController.m */,
-				B5F407C22340998500D43C80 /* ScoreViewController.xib */,
 				B513306D2337965A007A4A7E /* RankListViewController.h */,
 				B513306E2337965A007A4A7E /* RankListViewController.m */,
 				B513306F2337965A007A4A7E /* RankListViewController.xib */,
@@ -233,6 +230,9 @@
 		B59B2134235225C400154FC1 /* others */ = {
 			isa = PBXGroup;
 			children = (
+				B5F407C02340998500D43C80 /* ScoreViewController.h */,
+				B5F407C12340998500D43C80 /* ScoreViewController.m */,
+				B5F407C22340998500D43C80 /* ScoreViewController.xib */,
 				B513307723379CE8007A4A7E /* TaskViewController.h */,
 				B513307823379CE8007A4A7E /* TaskViewController.m */,
 				B513307923379CE8007A4A7E /* TaskViewController.xib */,

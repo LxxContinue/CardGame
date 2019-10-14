@@ -39,26 +39,10 @@ static const CGFloat kTimeOutTime = 10.f;
     }
     
     [self regist];
-    
-    //[self dismissViewControllerAnimated:YES completion:nil];
+
 }
 
 -(void)regist{
-//    LxxInterfaceConnection *connect = [[LxxInterfaceConnection alloc] init];
-//    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-//    [dic setObject:_usernameText.text forKey:@"username"];
-//    [dic setObject:_passwordText.text forKey:@"password"];
-//    [connect connetNetWithHaddleV2:@"auth/register" parms:dic type:1 needToken:NO block:^(int fail,NSString *dataMessage,NSDictionary *dictionary){
-//
-//        if(fail == 0) {
-//            NSLog(@"regist success");
-//            [self dismissViewControllerAnimated:YES completion:nil];
-//        } else {
-//            NSLog(@"regist error %@",dataMessage);
-//        }
-//
-//    }];
-    
     // 1.创建请求
     NSURL *url = [NSURL URLWithString:@"https://api.shisanshui.rtxux.xyz/auth/register"];
     
@@ -91,23 +75,6 @@ static const CGFloat kTimeOutTime = 10.f;
         }
     }];
     [dataTask resume];
-
-    
-//    // 1. 创建请求对象（可变）
-//    NSMutableURLRequest * request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://api.hudong.com/iphonexml.do"]];
-//    // 2. 设置请求方法为 POST 请求
-//    request.HTTPMethod = @"POST";
-//    request.HTTPBody = [@"type=focus-c" dataUsingEncoding:NSUTF8StringEncoding];
-//
-//    NSURLSession *session = [NSURLSession sharedSession];
-//
-//    // 1. 初始化 NSURLSessionDataTask 对象
-//    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-//
-//            NSLog(@"%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-//    }];
-//
-//    [dataTask resume];
  
 }
 - (IBAction)pop:(UIButton *)sender {

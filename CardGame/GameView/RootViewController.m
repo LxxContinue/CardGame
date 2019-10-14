@@ -76,14 +76,7 @@ static const CGFloat kTimeOutTime = 30.f;
     }];
     [dataTask resume];
 }
-//- (IBAction)taskViewAction:(UIButton *)sender {
-//    TaskViewController *tc = [[TaskViewController alloc]init];
-//    [self presentViewController:tc animated:YES completion:nil];
-//}
-//- (IBAction)personViewAction:(UIButton *)sender {
-//    PersonalViewController *pc = [[PersonalViewController alloc]init];
-//    [self presentViewController:pc animated:YES completion:nil];
-//}
+
 - (IBAction)rankingListAction:(UIButton *)sender {
     RankListViewController *rc = [[RankListViewController alloc]init];
     [self presentViewController:rc animated:YES completion:nil];
@@ -114,47 +107,7 @@ static const CGFloat kTimeOutTime = 30.f;
             });
         }
     }];
-    
 
-//    // 1.创建请求
-//    //NSURL *url = [NSURL URLWithString:@"https://api.shisanshui.rtxux.xyz/history"];
-//
-//    NSString *urlStr = [NSString stringWithFormat: @"https://api.shisanshui.rtxux.xyz/history?player_id=%@&limit=%@&page=%@",self.userInfo.user_id,@"100",@"0"];
-//
-//    NSURL *url = [NSURL URLWithString:urlStr];
-//    NSMutableURLRequest *request=[NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:kTimeOutTime];
-//    request.HTTPMethod = @"GET";
-//    // 2.设置请求头
-//    [request setValue:self.token forHTTPHeaderField:@"X-Auth-Token"];
-//    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-//
-//    // 3.设置请求体
-//
-//    // 4.发送请求
-//    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[[NSOperationQueue alloc]init]];
-//
-//    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-//
-//        if (!error) {
-//            NSDictionary *dictionary = [self readJsonData:data];
-//            NSLog(@"game  %@",dictionary);
-//
-//            NSMutableArray *hisArr = [[NSMutableArray alloc]init];
-//            hisArr = [dictionary objectForKey:@"data"];
-//
-//            NSLog(@"count :%lu",(unsigned long)hisArr.count);
-//
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                HistoryViewController *hc = [[HistoryViewController alloc]init];
-//                hc.hisArr = hisArr;
-//                [self presentViewController:hc animated:YES completion:nil];
-//            });
-//
-//        }else{
-//            NSLog(@"错误信息：%@",error);
-//        }
-//    }];
-//    [dataTask resume];
 }
 
 #pragma mark - readJson
