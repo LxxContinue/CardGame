@@ -30,49 +30,39 @@
     
     [self loadLocation];
     
-    UILabel *titile = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2-50, 10, 100, 50)];
-    titile.text = @"英雄榜";
-    titile.textColor = [UIColor redColor];
-    titile.textAlignment = NSTextAlignmentCenter;
-    titile.font = [UIFont systemFontOfSize:25];
-    [self.view addSubview:titile];
+//    UILabel *titile = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2-50, 10, 100, 50)];
+//    titile.text = @"英雄榜";
+//    titile.textColor = [UIColor redColor];
+//    titile.textAlignment = NSTextAlignmentCenter;
+//    titile.font = [UIFont systemFontOfSize:25];
+//    [self.view addSubview:titile];
     
     [self dataConfiguration];
     [self creatTabelView];
-    
 }
 -(void)loadLocation{
-
     NSURLSession *session = [NSURLSession sharedSession];
 
     NSURL *url = [NSURL URLWithString:@"https://api.shisanshui.rtxux.xyz/rank/rank.json"];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-
-    //[request setHTTPMethod:@"HEAD"];
-
+    
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
 
     NSURLSessionDataTask * dataTask =  [session dataTaskWithRequest:request completionHandler:^(NSData * __nullable data, NSURLResponse * __nullable response, NSError * __nullable error) {
 
-
         NSHTTPURLResponse *res = (NSHTTPURLResponse *)response;
 
+        self.location = res.URL;
+        
         //NSLog(@"head: %@\n",[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding]);
         NSLog(@"res: %@",res);
-        
-        self.location = res.URL;
         
         NSArray *arr = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
         NSLog(@"login返回正确：%@",arr);
 
-//        NSDictionary *httpResponseHeaderFields = [res allHeaderFields];
-//        NSLog(@"header!!!:%@",httpResponseHeaderFields);
-//        NSLog(@"location: %@",[httpResponseHeaderFields objectForKey:@"Location"]);
         dispatch_async(dispatch_get_main_queue(), ^{
             [self loadData];
         });
-        
-
     }];
     [dataTask resume];
 }
@@ -108,7 +98,7 @@
 
 
 -(void)creatTabelView{
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(50,50, SCREEN_WIDTH-100, SCREEN_HEIGHT-100)];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(50,80, SCREEN_WIDTH-100, SCREEN_HEIGHT-100)];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     

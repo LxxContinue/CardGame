@@ -12,7 +12,8 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+    
+    [self setUpUI];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -28,6 +29,14 @@
     frame.size.width -= 30;
     
     [super setFrame:frame];
+}
+
+-(void)setUpUI {
+    self.layer.cornerRadius = 7;
+    self.layer.shadowOffset = CGSizeMake(5, 5);
+    self.layer.shadowOpacity = 0.4f;
+    self.layer.shadowColor = [UIColor grayColor].CGColor;
+    
 }
 
 +(instancetype)cellInit:(UITableView *)tableView{

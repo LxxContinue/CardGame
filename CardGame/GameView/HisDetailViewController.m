@@ -67,7 +67,7 @@
     cell.userID.text = [NSString stringWithFormat:@"%@",[gameDic objectForKey:@"name"]];
     
     NSArray *card = [gameDic objectForKey:@"card"];
-    cell.contentLabel.text = [NSString stringWithFormat:@"%@,%@,%@",card[0],card[1],card[2]];
+    cell.contentLabel.text = [NSString stringWithFormat:@"%@ , %@ , %@",card[0],card[1],card[2]];
     
     cell.scoreLabel.text = [NSString stringWithFormat:@"%@",[gameDic objectForKey:@"score"]];
     

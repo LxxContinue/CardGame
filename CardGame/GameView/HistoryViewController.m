@@ -90,7 +90,7 @@ static const CGFloat kTimeOutTime = 30.f;
         NSString *card1 = [NSString stringWithFormat:@"%@",card[0]];
         NSString *card2 = [NSString stringWithFormat:@"%@",card[1]];
         NSString *card3 = [NSString stringWithFormat:@"%@",card[2]];
-        cell.contentLabel.text = [NSString stringWithFormat:@"%@,%@,%@",card1,card2,card3];
+        cell.contentLabel.text = [NSString stringWithFormat:@"%@ , %@ , %@",card1,card2,card3];
     }
     else{
         cell.contentLabel.text = @"牌数有错误";
