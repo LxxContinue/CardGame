@@ -127,7 +127,15 @@
     
     NSDictionary *playerDic = self.rankArr[indexPath.row];
     
-    cell.userID.text = [NSString stringWithFormat:@"%@",[playerDic objectForKey:@"player_id"]];
+    UIImageView *image = [[UIImageView alloc]init];
+    image.frame = CGRectMake(20, 10, 50, 50);
+    if(indexPath.row<3){
+        image.image = [UIImage imageNamed:[NSString stringWithFormat:@"%ld",indexPath.row+1]];
+    }
+    [cell addSubview:image];
+    
+    //cell.userID.text = [NSString stringWithFormat:@"%@",[playerDic objectForKey:@"player_id"]];
+    cell.userID.text = [NSString stringWithFormat:@"%ld",indexPath.row+1];
     cell.contentLabel.text = [NSString stringWithFormat:@"%@",[playerDic objectForKey:@"name"]];
     cell.scoreLabel.text = [NSString stringWithFormat:@"%@",[playerDic objectForKey:@"score"]];
     

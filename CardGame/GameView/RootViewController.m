@@ -10,8 +10,6 @@
 #import "GameViewController.h"
 #import "HistoryViewController.h"
 #import "RankListViewController.h"
-#import "PersonalViewController.h"
-#import "TaskViewController.h"
 #import "UserInfo.h"
 
 #import "LxxInterfaceConnection.h"
@@ -33,7 +31,6 @@ static const CGFloat kTimeOutTime = 30.f;
     NSData *deData = [[NSUserDefaults standardUserDefaults] objectForKey:@"userInfo"];
     _userInfo = [NSKeyedUnarchiver unarchiveObjectWithData:deData];
     self.token = _userInfo.token;
-    
     self.count = 3400;
 }
 - (IBAction)beginGameAction:(UIButton *)sender {

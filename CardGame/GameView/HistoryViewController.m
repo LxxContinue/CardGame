@@ -87,7 +87,7 @@
         cell.contentLabel.text = [NSString stringWithFormat:@"%@ , %@ , %@",card1,card2,card3];
     }
     else{
-        cell.contentLabel.text = @"牌数有错误";
+        cell.contentLabel.text = [NSString stringWithFormat:@"特殊：%@",card[0]];
     }
     
     cell.scoreLabel.text = [NSString stringWithFormat:@"%@",[gameDic objectForKey:@"score"]];

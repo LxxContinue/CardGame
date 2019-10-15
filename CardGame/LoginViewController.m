@@ -30,8 +30,8 @@ static const CGFloat kTimeOutTime = 10.f;
     self.passwordText.keyboardType = UIReturnKeyDefault;
     self.passwordText.delegate = self;
     
-    self.passwordText.text = @"123";
-    self.usernameText.text = @"031702432";
+//    self.passwordText.text = @"123";
+//    self.usernameText.text = @"031702432";
     
 }
 
@@ -106,8 +106,8 @@ static const CGFloat kTimeOutTime = 10.f;
     }];
     [dataTask resume];
 
-    
 }
+
 - (IBAction)showRegistView:(UIButton *)sender {
     RegistViewController *rvc = [[RegistViewController alloc]init];
     [self presentViewController:rvc animated:YES completion:nil];

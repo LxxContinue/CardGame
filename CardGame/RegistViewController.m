@@ -69,6 +69,20 @@ static const CGFloat kTimeOutTime = 10.f;
             NSLog(@"返回正确：%@",arr);
             NSLog(@"%lu", data.length);
             
+            dispatch_async(dispatch_get_main_queue(), ^{
+                UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"注册成功"
+                                                                               message:@"快加入战局吧！"
+                                                                        preferredStyle:UIAlertControllerStyleAlert];
+                
+                UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault
+                                                                      handler:^(UIAlertAction * action) {
+                                                                          [self dismissViewControllerAnimated:YES completion:nil];
+                                                                      }];
+
+                [alert addAction:defaultAction];
+                [self presentViewController:alert animated:YES completion:nil];
+            });
+            
         }else{
             //出现错误；
             NSLog(@"错误信息：%@",error);
