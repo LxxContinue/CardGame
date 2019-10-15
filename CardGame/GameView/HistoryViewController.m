@@ -29,11 +29,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-//    NSData *deData = [[NSUserDefaults standardUserDefaults] objectForKey:@"userInfo"];
-//    _userInfo = [NSKeyedUnarchiver unarchiveObjectWithData:deData];
-//    self.token = _userInfo.token;
-    
 
     [self dataConfiguration];
     [self creatTabelView];
