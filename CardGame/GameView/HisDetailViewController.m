@@ -67,7 +67,16 @@
     cell.userID.text = [NSString stringWithFormat:@"%@",[gameDic objectForKey:@"name"]];
     
     NSArray *card = [gameDic objectForKey:@"card"];
-    cell.contentLabel.text = [NSString stringWithFormat:@"%@ , %@ , %@",card[0],card[1],card[2]];
+    if (card.count>=3) {
+        NSString *card1 = [NSString stringWithFormat:@"%@",card[0]];
+        NSString *card2 = [NSString stringWithFormat:@"%@",card[1]];
+        NSString *card3 = [NSString stringWithFormat:@"%@",card[2]];
+        cell.contentLabel.text = [NSString stringWithFormat:@"%@ , %@ , %@",card1,card2,card3];
+    }
+    else{
+        cell.contentLabel.text = @"牌面有错误";
+    }
+    NSLog(@"%@ ",gameDic);
     
     cell.scoreLabel.text = [NSString stringWithFormat:@"%@",[gameDic objectForKey:@"score"]];
     

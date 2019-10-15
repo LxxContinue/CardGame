@@ -21,10 +21,6 @@
 		B513306C23379634007A4A7E /* HistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B513306A23379634007A4A7E /* HistoryViewController.xib */; };
 		B51330702337965A007A4A7E /* RankListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B513306E2337965A007A4A7E /* RankListViewController.m */; };
 		B51330712337965A007A4A7E /* RankListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B513306F2337965A007A4A7E /* RankListViewController.xib */; };
-		B513307523379CC6007A4A7E /* PersonalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B513307323379CC6007A4A7E /* PersonalViewController.m */; };
-		B513307623379CC6007A4A7E /* PersonalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B513307423379CC6007A4A7E /* PersonalViewController.xib */; };
-		B513307A23379CE8007A4A7E /* TaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B513307823379CE8007A4A7E /* TaskViewController.m */; };
-		B513307B23379CE8007A4A7E /* TaskViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B513307923379CE8007A4A7E /* TaskViewController.xib */; };
 		B5238CFC233E292B000B2E77 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5238CFA233E292B000B2E77 /* LoginViewController.m */; };
 		B5238CFD233E292B000B2E77 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5238CFB233E292B000B2E77 /* LoginViewController.xib */; };
 		B537DE15233FA1A60089C579 /* LxxInterfaceConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = B537DE14233FA1A60089C579 /* LxxInterfaceConnection.m */; };
@@ -34,8 +30,6 @@
 		B5A7D2F6234E36B0007F9BAF /* wshFile.c in Sources */ = {isa = PBXBuildFile; fileRef = B5A7D2F4234E36B0007F9BAF /* wshFile.c */; };
 		B5DE9A102350A6EB0012F3C4 /* HisDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DE9A0E2350A6EB0012F3C4 /* HisDetailViewController.m */; };
 		B5DE9A112350A6EB0012F3C4 /* HisDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5DE9A0F2350A6EB0012F3C4 /* HisDetailViewController.xib */; };
-		B5F407C32340998500D43C80 /* ScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F407C12340998500D43C80 /* ScoreViewController.m */; };
-		B5F407C42340998500D43C80 /* ScoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5F407C22340998500D43C80 /* ScoreViewController.xib */; };
 		B5F407C82340A2D100D43C80 /* RankTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F407C62340A2D100D43C80 /* RankTableViewCell.m */; };
 		B5F407C92340A2D100D43C80 /* RankTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5F407C72340A2D100D43C80 /* RankTableViewCell.xib */; };
 /* End PBXBuildFile section */
@@ -83,12 +77,6 @@
 		B513306D2337965A007A4A7E /* RankListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RankListViewController.h; sourceTree = "<group>"; };
 		B513306E2337965A007A4A7E /* RankListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RankListViewController.m; sourceTree = "<group>"; };
 		B513306F2337965A007A4A7E /* RankListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RankListViewController.xib; sourceTree = "<group>"; };
-		B513307223379CC6007A4A7E /* PersonalViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonalViewController.h; sourceTree = "<group>"; };
-		B513307323379CC6007A4A7E /* PersonalViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonalViewController.m; sourceTree = "<group>"; };
-		B513307423379CC6007A4A7E /* PersonalViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonalViewController.xib; sourceTree = "<group>"; };
-		B513307723379CE8007A4A7E /* TaskViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaskViewController.h; sourceTree = "<group>"; };
-		B513307823379CE8007A4A7E /* TaskViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskViewController.m; sourceTree = "<group>"; };
-		B513307923379CE8007A4A7E /* TaskViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskViewController.xib; sourceTree = "<group>"; };
 		B5238CF9233E292B000B2E77 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		B5238CFA233E292B000B2E77 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		B5238CFB233E292B000B2E77 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
@@ -104,9 +92,6 @@
 		B5DE9A0D2350A6EB0012F3C4 /* HisDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HisDetailViewController.h; sourceTree = "<group>"; };
 		B5DE9A0E2350A6EB0012F3C4 /* HisDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HisDetailViewController.m; sourceTree = "<group>"; };
 		B5DE9A0F2350A6EB0012F3C4 /* HisDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HisDetailViewController.xib; sourceTree = "<group>"; };
-		B5F407C02340998500D43C80 /* ScoreViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScoreViewController.h; sourceTree = "<group>"; };
-		B5F407C12340998500D43C80 /* ScoreViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScoreViewController.m; sourceTree = "<group>"; };
-		B5F407C22340998500D43C80 /* ScoreViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScoreViewController.xib; sourceTree = "<group>"; };
 		B5F407C52340A2D100D43C80 /* RankTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RankTableViewCell.h; sourceTree = "<group>"; };
 		B5F407C62340A2D100D43C80 /* RankTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RankTableViewCell.m; sourceTree = "<group>"; };
 		B5F407C72340A2D100D43C80 /* RankTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RankTableViewCell.xib; sourceTree = "<group>"; };
@@ -222,25 +207,8 @@
 				B5F407C72340A2D100D43C80 /* RankTableViewCell.xib */,
 				B5A7D2F4234E36B0007F9BAF /* wshFile.c */,
 				B5A7D2F5234E36B0007F9BAF /* wshFile.h */,
-				B59B2134235225C400154FC1 /* others */,
 			);
 			path = GameView;
-			sourceTree = "<group>";
-		};
-		B59B2134235225C400154FC1 /* others */ = {
-			isa = PBXGroup;
-			children = (
-				B5F407C02340998500D43C80 /* ScoreViewController.h */,
-				B5F407C12340998500D43C80 /* ScoreViewController.m */,
-				B5F407C22340998500D43C80 /* ScoreViewController.xib */,
-				B513307723379CE8007A4A7E /* TaskViewController.h */,
-				B513307823379CE8007A4A7E /* TaskViewController.m */,
-				B513307923379CE8007A4A7E /* TaskViewController.xib */,
-				B513307223379CC6007A4A7E /* PersonalViewController.h */,
-				B513307323379CC6007A4A7E /* PersonalViewController.m */,
-				B513307423379CC6007A4A7E /* PersonalViewController.xib */,
-			);
-			path = others;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -348,15 +316,12 @@
 			files = (
 				B51330712337965A007A4A7E /* RankListViewController.xib in Resources */,
 				B5F407C92340A2D100D43C80 /* RankTableViewCell.xib in Resources */,
-				B513307B23379CE8007A4A7E /* TaskViewController.xib in Resources */,
-				B5F407C42340998500D43C80 /* ScoreViewController.xib in Resources */,
 				B537DE1B233FA66F0089C579 /* RegistViewController.xib in Resources */,
 				B513306723379620007A4A7E /* GameViewController.xib in Resources */,
 				B513303923378D1D007A4A7E /* LaunchScreen.storyboard in Resources */,
 				B513303623378D1D007A4A7E /* Assets.xcassets in Resources */,
 				B513306C23379634007A4A7E /* HistoryViewController.xib in Resources */,
 				B51330622337919E007A4A7E /* RootViewController.xib in Resources */,
-				B513307623379CC6007A4A7E /* PersonalViewController.xib in Resources */,
 				B5DE9A112350A6EB0012F3C4 /* HisDetailViewController.xib in Resources */,
 				B5238CFD233E292B000B2E77 /* LoginViewController.xib in Resources */,
 			);
@@ -386,9 +351,6 @@
 				B513306623379620007A4A7E /* GameViewController.m in Sources */,
 				B5A7D2F6234E36B0007F9BAF /* wshFile.c in Sources */,
 				B5F407C82340A2D100D43C80 /* RankTableViewCell.m in Sources */,
-				B513307A23379CE8007A4A7E /* TaskViewController.m in Sources */,
-				B513307523379CC6007A4A7E /* PersonalViewController.m in Sources */,
-				B5F407C32340998500D43C80 /* ScoreViewController.m in Sources */,
 				B513303C23378D1D007A4A7E /* main.m in Sources */,
 				B5A7D2B2234DE2AF007F9BAF /* UserInfo.m in Sources */,
 				B537DE15233FA1A60089C579 /* LxxInterfaceConnection.m in Sources */,
