@@ -74,7 +74,7 @@
         cell.contentLabel.text = [NSString stringWithFormat:@"%@ , %@ , %@",card1,card2,card3];
     }
     else{
-        cell.contentLabel.text = [NSString stringWithFormat:@"特殊：%@",card[0]];
+        cell.contentLabel.text = [NSString stringWithFormat:@"%@",card[0]];
     }
     NSLog(@"%@ ",gameDic);
     

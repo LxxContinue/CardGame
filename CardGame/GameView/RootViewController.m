@@ -87,7 +87,7 @@ static const CGFloat kTimeOutTime = 30.f;
     [parm setObject:@"100" forKey:@"limit"];
     
 //    NSString *rul = [NSString stringWithFormat: @"https://api.shisanshui.rtxux.xyz/history"];
-    NSString *rul = [NSString stringWithFormat: @"https://api.shisanshui.rtxux.xyz/history?player_id=%@&limit=%@&page=%@",self.userInfo.user_id,@"100",@"0"];
+    NSString *rul = [NSString stringWithFormat: @"https://api.shisanshui.rtxux.xyz/history?player_id=%@&limit=%@&page=%@",self.userInfo.user_id,@"300",@"0"];
     
     LxxInterfaceConnection *connect = [[LxxInterfaceConnection alloc] init];
     [connect connetNetWithGetMethod:rul parms:parm block:^(int fail,NSString *dataMessage,NSDictionary *dictionary) {
