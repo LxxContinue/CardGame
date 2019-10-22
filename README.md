@@ -1,8 +1,9 @@
 # CardGame
 ![](https://img.shields.io/badge/language-OC-blue.svg)
 ![](https://img.shields.io/badge/platform-ios-lightgrey.svg)
-[![codebeat badge](https://codebeat.co/badges/db27590d-b756-44ac-bf38-395532844ae1)](https://codebeat.co/projects/github-com-lxxcontinue-cardgame-master)
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/8c3272dccf8a4266a8f6b4926bf79b1b)](https://www.codacy.com/manual/aka1i/Card13SpringBoot?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=aka1i/Card13SpringBoot&amp;utm_campaign=Badge_Grade)
+![](https://img.shields.io/appveyor/ci/gruntjs/grunt.svg?maxAge=2592000)
 ![](https://img.shields.io/badge/license-MIT-000000.svg)
 
 福建十三水的游戏，从服务器获取牌面，并作出最优解
