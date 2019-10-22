@@ -39,7 +39,16 @@ static const CGFloat kTimeOutTime = 20.f;
     
     NSLog(@"id:%@  card:%@",self.gameID,self.cardStr);
     
+    //[self creatCard];
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    
     [self creatCard];
+    
+    UIButton *button = [[UIButton alloc]init];
+    //[self commitAction:button];
 }
 
 -(void)creatCard{
@@ -118,18 +127,18 @@ static const CGFloat kTimeOutTime = 20.f;
             NSLog(@"返回正确：%@",arr);
             
             dispatch_async(dispatch_get_main_queue(), ^{
-                UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"成功打牌"
-                                                                               message:@"得分将等待对局结束后显示"
-                                                                        preferredStyle:UIAlertControllerStyleAlert];
-                
-                UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault
-                                                                      handler:^(UIAlertAction * action) {
-                                                                          [self dismissViewControllerAnimated:YES completion:nil];
-                                                                      }];
-                
-                [alert addAction:defaultAction];
-                [self presentViewController:alert animated:YES completion:nil];
-                //[self dismissViewControllerAnimated:YES completion:nil];
+//                UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"成功打牌"
+//                                                                               message:@"得分将等待对局结束后显示"
+//                                                                        preferredStyle:UIAlertControllerStyleAlert];
+//
+//                UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault
+//                                                                      handler:^(UIAlertAction * action) {
+//                                                                          [self dismissViewControllerAnimated:YES completion:nil];
+//                                                                      }];
+//
+//                [alert addAction:defaultAction];
+//                [self presentViewController:alert animated:YES completion:nil];
+                [self dismissViewControllerAnimated:YES completion:nil];
             });
             
         }else{

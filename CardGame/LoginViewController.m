@@ -30,8 +30,8 @@ static const CGFloat kTimeOutTime = 10.f;
     self.passwordText.keyboardType = UIReturnKeyDefault;
     self.passwordText.delegate = self;
     
-//    self.passwordText.text = @"123";
-//    self.usernameText.text = @"031702432";
+    self.passwordText.text = @"123";
+    self.usernameText.text = @"031702433";
     
 }
 
@@ -84,12 +84,12 @@ static const CGFloat kTimeOutTime = 10.f;
             [[NSUserDefaults standardUserDefaults] setObject:userData forKey:@"userInfo"];
             [[NSUserDefaults standardUserDefaults] setObject:userInfo.token forKey:@"token"];
             [[NSUserDefaults standardUserDefaults] setObject:userInfo.user_id forKey:@"user_id"];
-            
+
             result = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
             NSLog(@"返回正确：%@",result);
             NSArray *arr = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
             NSLog(@"login返回正确：%@",arr);
-            
+
             NSLog(@"**** token:%@   id:%@",userInfo.token,userInfo.user_id);
             
             

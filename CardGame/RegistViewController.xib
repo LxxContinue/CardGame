@@ -12,6 +12,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RegistViewController">
             <connections>
+                <outlet property="numText" destination="TVp-3i-qBk" id="TNa-Ps-E9r"/>
+                <outlet property="passText" destination="uPv-R3-c2h" id="LBH-ml-JG4"/>
                 <outlet property="passwordText" destination="Opd-IC-a44" id="Q0r-hp-5qp"/>
                 <outlet property="registBtn" destination="Dck-Bi-5x9" id="bff-QG-RuK"/>
                 <outlet property="usernameText" destination="Cdu-kG-eNP" id="KeO-P4-WEq"/>
@@ -83,6 +85,20 @@
                         <action selector="registBtnAction:" destination="-1" eventType="touchUpInside" id="YDX-WZ-ZG5"/>
                     </connections>
                 </button>
+                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="教务处密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uPv-R3-c2h">
+                    <rect key="frame" x="473" y="283" width="126" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="学号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TVp-3i-qBk">
+                    <rect key="frame" x="98" y="283" width="115" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
