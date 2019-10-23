@@ -49,7 +49,7 @@ char santiaof[5];
 int liangduis=0,liangdui[5];//¡Ω∂‘
 char liangduif[5];
 
-int yiduis,yidui[5];//“ª∂‘
+int yiduis=0,yidui[5];//“ª∂‘
 char yiduif[5];
 
 int yizhangs=0,yizhang[5];//“ª’≈
@@ -247,7 +247,7 @@ void printths(int duni)//»∑∂®”–Õ¨ª®À≥÷Æ∫Ûµƒ≤Ÿ◊˜
 
 int ifzhad()//≈–∂œ «∑Ò”–’®µØ
 {
-    for(int i=14;i>0;i--)
+    for(int i=14;i>1;i--)
     {
         if(count[i]==4)
         {
@@ -270,7 +270,7 @@ void printzhad(int duni)//”–’®µØ÷Æ∫Ûµƒ≤Ÿ◊˜
     zha[1]=zham;
     zha[2]=zham;
     zha[3]=zham;
-    for(int i=0;i<15;i++)
+    for(int i=2;i<15;i++)
     {
         if(count[i]==1)
         {
@@ -280,7 +280,7 @@ void printzhad(int duni)//”–’®µØ÷Æ∫Ûµƒ≤Ÿ◊˜
     }
     if(zhad==-1)
     {
-        for(int i=0;i<15;i++)
+        for(int i=2;i<15;i++)
         {
             if(count[i]==2)
             {
@@ -291,7 +291,7 @@ void printzhad(int duni)//”–’®µØ÷Æ∫Ûµƒ≤Ÿ◊˜
     }
     if(zhad==-1)
     {
-        for(int i=0;i<15;i++)
+        for(int i=2;i<15;i++)
         {
             if(count[i]==3)
             {
@@ -302,7 +302,7 @@ void printzhad(int duni)//”–’®µØ÷Æ∫Ûµƒ≤Ÿ◊˜
     }
     if(zhad==-1)
     {
-        for(int i=0;i<15;i++)
+        for(int i=2;i<15;i++)
         {
             if(i!=zham&&count[i]>0)
             {
@@ -374,11 +374,11 @@ void printzhad(int duni)//”–’®µØ÷Æ∫Ûµƒ≤Ÿ◊˜
 
 int ifhulu()//≈–∂œ «∑Ò”–∫˘¬´
 {
-    for(int i=14;i>=0;i--)
+    for(int i=14;i>1;i--)
     {
         if(count[i]==3)
         {
-            for(int j=0;j<15;j++)
+            for(int j=2;j<15;j++)
             {
                 if(count[j]==2)
                 {
@@ -595,7 +595,7 @@ void printtonghua(int duni)//”–Õ¨ª®µƒ«Èøˆ
 
 int ifshunzi()//≈–∂œ «∑Ò”–À≥◊”
 {
-    for(int i=14;i>0;i--)
+    for(int i=14;i>1;i--)
     {
         if(count[i]>0&&count[i-1]>0&&count[i-2]>0&&count[i-3]>0&&count[i-4]>0)//”–À≥◊”
         {
@@ -674,7 +674,7 @@ void printshunzi(int duni)
 
 int ifsantiao()
 {
-    for(int i=14;i>0;i--)
+    for(int i=14;i>1;i--)
     {
         if(count[i]==3)
         {
@@ -683,7 +683,7 @@ int ifsantiao()
             santiao[1]=i;
             santiao[2]=i;
             int santiaoi=3;
-            for(int j=0;j<15;j++)
+            for(int j=2;j<15;j++)
             {
                 if(j!=i&&count[j]>0)//»˝Ãıøœ∂®æÕ√ª∂‘◊”¡À£¨≤ª”√øº¬«Ã´∂‡
                 {
@@ -768,16 +768,16 @@ void printsantiao(int duni)
 
 int ifliangdui()
 {
-    for(int i=14;i>0;i--)
+    for(int i=14;i>1;i--)
     {
         if(count[i]==2)
         {
-            for(int j=0;j<15;j++)
+            for(int j=2;j<15;j++)
             {
                 if(count[j]==2&&j!=i)
                 {
                     //liangduis=1;
-                    for(int k=0;k<15;k++)
+                    for(int k=2;k<15;k++)
                     {
                         if(count[k]==1)
                         {
@@ -809,7 +809,7 @@ int ifliangdui()
                     }
                     if(liangduis==0)
                     {
-                        for(int k=0;k<15;k++)
+                        for(int k=2;k<15;k++)
                         {
                             if(count[k]>0&&k!=i&&k!=j)
                             {
@@ -845,6 +845,86 @@ int ifliangdui()
             }
             break;
         }
+    }
+    int sums=0;
+    for(int i=2;i<15;i++)
+    {
+        if(count[i]==2)
+            sums++;
+    }
+    if(sums==2)
+        liangduis=0;
+    for(int i=14;i>1;i--)
+    {
+        if(count[i]==2&&count[i-1]==2)
+        {
+            for(int k=2;k<15;k++)
+            {
+                if(count[k]==1)
+                {
+                    liangduis=1;
+                    liangdui[0]=i;
+                    liangdui[1]=i;
+                    liangdui[2]=i-1;
+                    liangdui[3]=i-1;
+                    liangdui[4]=k;
+                    int liangduii=0;
+                    for(int kkk=0;kkk<3;kkk++)
+                    {
+                        for(int kk=0;kk<13;kk++)
+                        {
+                            if(liangdui[liangduii]==shunxup[kk])
+                            {
+                                liangduif[liangduii]=shunxuf[kk];
+                                liangduii++;
+                                if(liangduii==5)
+                                    break;
+                            }
+                        }
+                        if(liangduii==5)
+                            break;
+                    }
+                    
+                    break;
+                }
+            }
+            if(liangduis==0)
+            {
+                for(int k=2;k<15;k++)
+                {
+                    if(count[k]>0&&k!=i&&k!=i-1)
+                    {
+                        liangduis=1;
+                        liangdui[0]=i;
+                        liangdui[1]=i;
+                        liangdui[2]=i-1;
+                        liangdui[3]=i-1;
+                        liangdui[4]=k;
+                        int liangduii=0;
+                        for(int kkk=0;kkk<3;kkk++)
+                        {
+                            for(int kk=0;kk<13;kk++)
+                            {
+                                if(liangdui[liangduii]==shunxup[kk])
+                                {
+                                    liangduif[liangduii]=shunxuf[kk];
+                                    liangduii++;
+                                    if(liangduii==5)
+                                        break;
+                                }
+                            }
+                            if(liangduii==5)
+                                break;
+                        }
+                        
+                        break;
+                    }
+                }
+            }
+            
+            break;
+        }
+        
     }
     return liangduis;
 }
@@ -901,7 +981,8 @@ void printliangdui(int duni)
 
 int ifyidui()
 {
-    for(int i=14;i>0;i--)
+    yiduis=0;
+    for(int i=14;i>1;i--)
     {
         if(count[i]==2)
         {
@@ -909,7 +990,7 @@ int ifyidui()
             yidui[0]=i;
             yidui[1]=i;
             int yiduii=2;
-            for(int j=0;j<15;j++)
+            for(int j=2;j<15;j++)
             {
                 if(count[j]==1)
                 {
@@ -988,12 +1069,11 @@ void printyidui(int duni)
             }
         }
     }
-    //printf("\n");
 }
 
 int ifyizhang()
 {
-    for(int i=0;i<15;i++)
+    for(int i=2;i<15;i++)
     {
         if(count[i]>1)
         {
@@ -1031,7 +1111,6 @@ int ifyizhang()
 }
 void printyizhang(int duni)
 {
-    //printf("µ•’≈£∫");
     int dunii=0;
     for(int i=0;i<5;i++)
     {
@@ -1077,7 +1156,6 @@ void printyizhang(int duni)
             }
         }
     }
-    //printf("\n");
 }
 
 char * cardmain(char pai[60])
@@ -1246,11 +1324,10 @@ char * cardmain(char pai[60])
                 flower[3]++;
         }
     }
-    //∫Û∂’¥¶¿Ì
     if(ifths())//Õ¨ª®À≥
     {
         printths(3);
-        tonghuas=0;
+        thss=0;
     }
     
     else if(ifzhad())//’®µØ
@@ -1305,7 +1382,6 @@ char * cardmain(char pai[60])
     }
     
     
-    //puts(houdun);
     for(int i=0;i<5;i++)
     {
         for(int j=0;j<13;j++)
@@ -1330,36 +1406,6 @@ char * cardmain(char pai[60])
             
         }
     }
-    
-    /*
-     printf("∫Û∂’£∫");
-     for(int i=0;i<5;i++)
-     {
-     printf("%c%d ",houdunf[i],houdunp[i]);
-     }
-     printf("\n");
-     */
-    
-    /*
-     for(int i=0;i<13;i++)
-     {
-     printf("%c%d ",shunxuf[i],shunxup[i]);
-     }
-     printf("\n");
-     for(int i=0;i<15;i++)
-     {
-     printf("%d ",count[i]);
-     }
-     printf("\n");
-     for(int i=0;i<4;i++)
-     {
-     printf("%d ",flower[i]);
-     }
-     printf("\n");
-     */
-    
-    
-    
     //÷–∂’¥¶¿Ì
     if(ifths())//Õ¨ª®À≥
     {
@@ -1426,35 +1472,6 @@ char * cardmain(char pai[60])
             
         }
     }
-    /*
-     printf("÷–∂’£∫");
-     for(int i=0;i<5;i++)
-     {
-     printf("%c%d ",zhongdunf[i],zhongdunp[i]);
-     }
-     printf("\n");
-     */
-    
-    /*
-     for(int i=0;i<13;i++)
-     {
-     printf("%c%d ",shunxuf[i],shunxup[i]);
-     }
-     printf("\n");
-     for(int i=0;i<15;i++)
-     {
-     printf("%d ",count[i]);
-     }
-     printf("\n");
-     for(int i=0;i<4;i++)
-     {
-     printf("%d ",flower[i]);
-     }
-     printf("\n");
-     */
-    
-    
-    
     int qianduni=0;
     for(int i=0;i<13;i++)
     {
@@ -1465,7 +1482,6 @@ char * cardmain(char pai[60])
             qianduni++;
         }
     }
-    //printf("«∞∂’£∫");
     for(int i=0;i<3;i++)
     {
         if(qiandunp[i]<10)
@@ -1507,13 +1523,6 @@ char * cardmain(char pai[60])
         }
         
     }
-    //for(int i=0;i<20;i++)
-    //{
-    //    printf("%c",qiandung[i]);
-    //}
-    //printf("\n");
-    
-    //printf("÷–∂’£∫");
     for(int i=0;i<5;i++)
     {
         if(zhongdunp[i]<10)
@@ -1555,13 +1564,6 @@ char * cardmain(char pai[60])
         }
         
     }
-    //for(int i=0;i<20;i++)
-    //{
-    //    printf("%c",qiandung[i]);
-    //}
-    //printf("\n");
-    
-    //printf("∫Û∂’£∫");
     for(int i=0;i<5;i++)
     {
         if(houdunp[i]<10)
@@ -1606,24 +1608,3 @@ char * cardmain(char pai[60])
     return qiandung;
 }
 
-
-
-//
-//int main()
-//{
-//    gets(pai);
-//    strcpy(jieguo,cardmain(pai));
-//    for(int i=0;i<60;i++)
-//    {
-//        printf("%c",jieguo[i]);
-//    }
-//    strcpy(jieguo,cardmain(pai));
-//    for(int i=0;i<60;i++)
-//    {
-//        printf("%c",jieguo[i]);
-//    }
-//    //puts(cardmain());
-//    //printf("\n");
-//
-//    return 0;
-//}

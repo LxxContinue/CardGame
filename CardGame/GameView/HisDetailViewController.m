@@ -74,7 +74,7 @@
         cell.contentLabel.text = [NSString stringWithFormat:@"%@ , %@ , %@",card1,card2,card3];
     }
     else{
-        cell.contentLabel.text = @"牌面有错误";
+        cell.contentLabel.text = [NSString stringWithFormat:@"%@",card[0]];
     }
     NSLog(@"%@ ",gameDic);
     

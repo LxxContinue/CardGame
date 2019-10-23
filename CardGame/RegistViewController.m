@@ -43,17 +43,23 @@ static const CGFloat kTimeOutTime = 10.f;
 }
 
 -(void)regist{
-    // 1.创建请求
+
     NSURL *url = [NSURL URLWithString:@"https://api.shisanshui.rtxux.xyz/auth/register"];
     
     NSMutableURLRequest *request=[NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:kTimeOutTime];
     request.HTTPMethod = @"POST";
-    // 2.设置请求头
+
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    // 3.设置请求体
+
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     [dic setObject:_usernameText.text forKey:@"username"];
     [dic setObject:_passwordText.text forKey:@"password"];
+//    if([self.numText.text isEqualToString:@""]){
+//        NSLog(@"jiaowuchu");
+//    }else {
+//        [dic setObject:_numText.text forKey:@"student_number"];
+//        [dic setObject:_passText.text forKey:@"student_password"];
+//    }
     
     NSData *data = [NSJSONSerialization dataWithJSONObject:dic options:0 error:nil];
     request.HTTPBody = data;
@@ -68,6 +74,20 @@ static const CGFloat kTimeOutTime = 10.f;
             NSArray *arr = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
             NSLog(@"返回正确：%@",arr);
             NSLog(@"%lu", data.length);
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"注册成功"
+                                                                               message:@"快加入战局吧！"
+                                                                        preferredStyle:UIAlertControllerStyleAlert];
+                
+                UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault
+                                                                      handler:^(UIAlertAction * action) {
+                                                                          [self dismissViewControllerAnimated:YES completion:nil];
+                                                                      }];
+
+                [alert addAction:defaultAction];
+                [self presentViewController:alert animated:YES completion:nil];
+            });
             
         }else{
             //出现错误；

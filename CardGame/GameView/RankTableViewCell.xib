@@ -43,7 +43,7 @@
                         <constraints>
                             <constraint firstAttribute="width" constant="50" id="txl-cs-pcy"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>

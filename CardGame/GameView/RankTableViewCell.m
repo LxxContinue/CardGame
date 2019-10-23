@@ -12,7 +12,6 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    
     [self setUpUI];
 }
 
@@ -33,10 +32,11 @@
 
 -(void)setUpUI {
     self.layer.cornerRadius = 7;
-    self.layer.shadowOffset = CGSizeMake(5, 5);
+    self.layer.shadowOffset = CGSizeMake(10,10);
     self.layer.shadowOpacity = 0.4f;
     self.layer.shadowColor = [UIColor grayColor].CGColor;
     
+
 }
 
 +(instancetype)cellInit:(UITableView *)tableView{
@@ -44,6 +44,8 @@
     RankTableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:identifier];
     if(!cell){
         cell=[[[NSBundle mainBundle]loadNibNamed:@"RankTableViewCell" owner:nil options:nil]firstObject];
+
+
     }
     return cell;
 }

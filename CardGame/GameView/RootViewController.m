@@ -10,8 +10,6 @@
 #import "GameViewController.h"
 #import "HistoryViewController.h"
 #import "RankListViewController.h"
-#import "PersonalViewController.h"
-#import "TaskViewController.h"
 #import "UserInfo.h"
 
 #import "LxxInterfaceConnection.h"
@@ -33,8 +31,13 @@ static const CGFloat kTimeOutTime = 30.f;
     NSData *deData = [[NSUserDefaults standardUserDefaults] objectForKey:@"userInfo"];
     _userInfo = [NSKeyedUnarchiver unarchiveObjectWithData:deData];
     self.token = _userInfo.token;
-    
     self.count = 3400;
+}
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    
+    UIButton *button = [[UIButton alloc]init];
+    //[self beginGameAction:button];
 }
 - (IBAction)beginGameAction:(UIButton *)sender {
     GameViewController *gc = [[GameViewController alloc]init];
@@ -90,7 +93,7 @@ static const CGFloat kTimeOutTime = 30.f;
     [parm setObject:@"100" forKey:@"limit"];
     
 //    NSString *rul = [NSString stringWithFormat: @"https://api.shisanshui.rtxux.xyz/history"];
-    NSString *rul = [NSString stringWithFormat: @"https://api.shisanshui.rtxux.xyz/history?player_id=%@&limit=%@&page=%@",self.userInfo.user_id,@"100",@"0"];
+    NSString *rul = [NSString stringWithFormat: @"https://api.shisanshui.rtxux.xyz/history?player_id=%@&limit=%@&page=%@",self.userInfo.user_id,@"20",@"100"];
     
     LxxInterfaceConnection *connect = [[LxxInterfaceConnection alloc] init];
     [connect connetNetWithGetMethod:rul parms:parm block:^(int fail,NSString *dataMessage,NSDictionary *dictionary) {
@@ -98,7 +101,7 @@ static const CGFloat kTimeOutTime = 30.f;
             NSMutableArray *hisArr = [[NSMutableArray alloc]init];
             hisArr = [dictionary objectForKey:@"data"];
             
-            NSLog(@"count :%lu",(unsigned long)hisArr.count);
+            NSLog(@"!!!count :%lu",(unsigned long)hisArr.count);
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 HistoryViewController *hc = [[HistoryViewController alloc]init];
